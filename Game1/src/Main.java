@@ -52,6 +52,193 @@ public class Main {
 		System.out.println("Left -> press 3");
 		System.out.println("Right -> press 4");
 		System.out.println();
+		
+		
+		while (state) {
+
+			printBoard(board);
+
+			option1 = option.nextInt();
+
+			switch (option1) {
+			case 1:
+				if (board[x_heroi - 1][y_heroi] != 'X' && board[x_heroi - 1][y_heroi] != 'I') {
+
+					if (board[x_heroi - 1][y_heroi] == 'K') {
+						board[5][0] = 'S';
+						board[6][0] = 'S';
+					}
+					if (board[x_heroi - 1][y_heroi] == 'G' || board[x_heroi + 1][y_heroi] == 'G'
+							|| board[x_heroi][y_heroi - 1] == 'G' || board[x_heroi][y_heroi + 1] == 'G')
+
+						{
+						state = false;
+						System.out.println("Game Over!");
+						}
+					
+					if (board[x_heroi - 1][y_heroi] == 'S' || board[x_heroi + 1][y_heroi] == 'S'
+							|| board[x_heroi][y_heroi - 1] == 'S' || board[x_heroi][y_heroi + 1] == 'S')
+
+						{
+						state = false;	
+						System.out.println("Victory!");
+						}
+
+					board[x_heroi][y_heroi] = ' ';
+					board[x_heroi - 1][y_heroi] = 'H';
+					x_heroi = x_heroi - 1;
+
+				}
+				break;
+			case 2:
+				if (board[x_heroi + 1][y_heroi] != 'X' && board[x_heroi + 1][y_heroi] != 'I') {
+
+					if (board[x_heroi + 1][y_heroi] == 'K') {
+						board[5][0] = 'S';
+						board[6][0] = 'S';
+					}
+					if (board[x_heroi - 1][y_heroi] == 'G' || board[x_heroi + 1][y_heroi] == 'G'
+							|| board[x_heroi][y_heroi - 1] == 'G' || board[x_heroi][y_heroi + 1] == 'G')
+
+					{
+						state = false;
+						System.out.println("Game Over!");
+						}
+					
+					if (board[x_heroi - 1][y_heroi] == 'S' || board[x_heroi + 1][y_heroi] == 'S'
+							|| board[x_heroi][y_heroi - 1] == 'S' || board[x_heroi][y_heroi + 1] == 'S')
+
+					{
+						state = false;	
+						System.out.println("Victory!");
+						}
+
+					board[x_heroi][y_heroi] = ' ';
+					board[x_heroi + 1][y_heroi] = 'H';
+					x_heroi = x_heroi + 1;
+
+				}
+				break;
+			case 3:
+				if (board[x_heroi][y_heroi - 1] != 'X' && board[x_heroi][y_heroi - 1] != 'I') {
+
+					if (board[x_heroi][y_heroi - 1] == 'K') {
+						board[5][0] = 'S';
+						board[6][0] = 'S';
+					}
+
+					if (board[x_heroi - 1][y_heroi] == 'G' || board[x_heroi + 1][y_heroi] == 'G'
+							|| board[x_heroi][y_heroi - 1] == 'G' || board[x_heroi][y_heroi + 1] == 'G')
+
+					{
+						state = false;
+						System.out.println("Game Over!");
+						}
+					if (board[x_heroi - 1][y_heroi] == 'S' || board[x_heroi + 1][y_heroi] == 'S'
+							|| board[x_heroi][y_heroi - 1] == 'S' || board[x_heroi][y_heroi + 1] == 'S')
+
+					{
+						state = false;	
+						System.out.println("Victory!");
+						}
+
+					board[x_heroi][y_heroi] = ' ';
+					board[x_heroi][y_heroi - 1] = 'H';
+					y_heroi = y_heroi - 1;
+
+				}
+				break;
+			case 4:
+				if (board[x_heroi][y_heroi + 1] != 'X' && board[x_heroi][y_heroi + 1] != 'I') {
+
+					if (board[x_heroi][y_heroi + 1] == 'K') {
+						board[5][0] = 'S';
+						board[6][0] = 'S';
+					}
+					if (board[x_heroi - 1][y_heroi] == 'G' || board[x_heroi + 1][y_heroi] == 'G'
+							|| board[x_heroi][y_heroi - 1] == 'G' || board[x_heroi][y_heroi + 1] == 'G')
+
+					{
+						state = false;
+						System.out.println("Game Over!");
+						}
+
+					if (board[x_heroi - 1][y_heroi] == 'S' || board[x_heroi + 1][y_heroi] == 'S'
+							|| board[x_heroi][y_heroi - 1] == 'S' || board[x_heroi][y_heroi + 1] == 'S')
+
+					{
+						state = false;	
+						System.out.println("Victory!");
+						}
+
+					board[x_heroi][y_heroi] = ' ';
+					board[x_heroi][y_heroi + 1] = 'H';
+					y_heroi = y_heroi + 1;
+
+				}
+				break;
+			default:
+				System.out.println("Invalid option!");
+				break;
+			}
+
+			if(passoGuarda==24)
+				passoGuarda=0;
+			
+			if (passoGuarda == 0) 
+			{
+				board[xGuarda][yGuarda] = ' ';
+				board[xGuarda][yGuarda-1]='G';
+				passoGuarda++;
+				
+				yGuarda=yGuarda-1;
+			}
+			else if (passoGuarda < 5) 
+			{
+				board[xGuarda][yGuarda] = ' ';
+				board[xGuarda+1][yGuarda]='G';
+				passoGuarda++;
+				
+				xGuarda=xGuarda+1;
+
+			} 
+			else if (passoGuarda < 11) 
+			{
+				board[xGuarda][yGuarda] = ' ';
+				board[xGuarda][yGuarda-1]='G';
+				passoGuarda++;
+				
+				yGuarda=yGuarda-1;
+
+			} 
+			else if (passoGuarda == 11) 
+			{
+				board[xGuarda][yGuarda] = ' ';
+				board[xGuarda+1][yGuarda]='G';
+				passoGuarda++;
+				
+				xGuarda=xGuarda+1;
+
+			} 
+			else if (passoGuarda < 19) 
+			{
+				board[xGuarda][yGuarda] = ' ';
+				board[xGuarda][yGuarda+1]='G';
+				passoGuarda++;
+				
+				yGuarda=yGuarda+1;
+			} 
+			else if (passoGuarda < 24) 
+			{
+				board[xGuarda][yGuarda] = ' ';
+				board[xGuarda-1][yGuarda]='G';
+				passoGuarda++;
+				
+				xGuarda=xGuarda-1;
+			}
+
+		}
+
 	}
 	// método imprimir tabuleiro
 		public static void printBoard(char[][] board) {
