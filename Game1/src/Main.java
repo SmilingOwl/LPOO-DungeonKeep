@@ -88,7 +88,7 @@ public class Main {
 
 			// lê input do utilizador
 			option1 = option.nextInt();
-
+			
 			switch (option1) {
 			// up
 			case 1:
@@ -169,8 +169,9 @@ public class Main {
 				break;
 			}
 
-			if (passoGuarda == 24)
+			if (passoGuarda == 24) {
 				passoGuarda = 0;
+			}
 
 			if (passoGuarda == 0) {
 				board[xGuarda][yGuarda] = ' ';
@@ -229,9 +230,7 @@ public class Main {
 		if (victory == false) {
 			while (state2) {
 
-				System.out.println("pre-movimento");
 				printBoard(board2);
-				
 
 				// lê input do utilizador
 				option2 = option.nextInt();
@@ -239,19 +238,30 @@ public class Main {
 				switch (option2) {
 				// up
 				case 1:
-
+					
 					if (board2[x_heroi2 - 1][y_heroi2] != 'X' && board2[x_heroi2 - 1][y_heroi2] != 'I') {
 
 						if (board2[x_heroi2 - 1][y_heroi2] == 'k') {
 							board2[2][0] = 'S';
+							board2[x_heroi2][y_heroi2] = ' ';
+							board2[x_heroi2 - 1][y_heroi2] = 'K';
+							x_heroi2 = x_heroi2 - 1;
+							break;
 						}
 
-						victory = victory(board2, x_heroi2, y_heroi2);
+						if (board2[x_heroi2][y_heroi2] == 'H') {
+							board2[x_heroi2][y_heroi2] = ' ';
+							board2[x_heroi2 - 1][y_heroi2] = 'H';
+							x_heroi2 = x_heroi2 - 1;
+						}
 
-						board2[x_heroi2][y_heroi2] = ' ';
-						board2[x_heroi2 - 1][y_heroi2] = 'H';
-						x_heroi2 = x_heroi2 - 1;
-
+						if (board2[x_heroi2][y_heroi2] == 'K') {
+							board2[x_heroi2][y_heroi2] = ' ';
+							board2[x_heroi2 - 1][y_heroi2] = 'K';
+							x_heroi2 = x_heroi2 - 1;
+						}
+						
+						//victory = victory(board2, x_heroi2, y_heroi2);
 					}
 					break;
 				// down
@@ -261,14 +271,26 @@ public class Main {
 
 						if (board2[x_heroi2 + 1][y_heroi2] == 'k') {
 							board2[2][0] = 'S';
+							board2[x_heroi2][y_heroi2] = ' ';
+							board2[x_heroi2 + 1][y_heroi2] = 'K';
+							x_heroi2 = x_heroi2 + 1;
+							break;
 						}
 
-						victory = victory(board2, x_heroi2, y_heroi2);
+						if (board2[x_heroi2][y_heroi2] == 'H') {
 
-						board2[x_heroi2][y_heroi2] = ' ';
-						board2[x_heroi2 + 1][y_heroi2] = 'H';
-						x_heroi2 = x_heroi2 + 1;
+							board2[x_heroi2][y_heroi2] = ' ';
+							board2[x_heroi2 + 1][y_heroi2] = 'H';
+							x_heroi2 = x_heroi2 + 1;
 
+						}
+
+						if (board2[x_heroi2 + 1][y_heroi2] == 'K') {
+							board2[x_heroi2][y_heroi2] = ' ';
+							board2[x_heroi2 + 1][y_heroi2] = 'K';
+							x_heroi2 = x_heroi2 + 1;
+						}
+						//victory = victory(board2, x_heroi2, y_heroi2);
 					}
 					break;
 				// left
@@ -277,27 +299,50 @@ public class Main {
 
 						if (board2[x_heroi2][y_heroi2 - 1] == 'k') {
 							board2[2][0] = 'S';
+							board2[x_heroi2][y_heroi2] = ' ';
+							board2[x_heroi2][y_heroi2 - 1] = 'K';
+							y_heroi2 = y_heroi2 - 1;
+							break;
 						}
-						victory = victory(board2, x_heroi2, y_heroi2);
+						if (board2[x_heroi2][y_heroi2] == 'H') {
 
-						board2[x_heroi2][y_heroi2] = ' ';
-						board2[x_heroi2][y_heroi2 - 1] = 'H';
-						y_heroi2 = y_heroi2 - 1;
+							board2[x_heroi2][y_heroi2] = ' ';
+							board2[x_heroi2][y_heroi2 - 1] = 'H';
+							y_heroi2 = y_heroi2 - 1;
+						}
+						if (board2[x_heroi2][y_heroi2] == 'K') {
+							board2[x_heroi2][y_heroi2] = ' ';
+							board2[x_heroi2][y_heroi2 - 1] = 'K';
+							y_heroi2 = y_heroi2 - 1;
+						}
+						//victory = victory(board2, x_heroi2, y_heroi2);
 					}
 					break;
+
 				// right
 				case 4:
 					if (board2[x_heroi2][y_heroi2 + 1] != 'X' && board2[x_heroi2][y_heroi2 + 1] != 'I') {
 
 						if (board2[x_heroi2][y_heroi2 + 1] == 'k') {
 							board2[2][0] = 'S';
+							board2[x_heroi2][y_heroi2] = ' ';
+							board2[x_heroi][y_heroi2 + 1] = 'K';
+							y_heroi2 = y_heroi2 + 1;
+							break;
 						}
-						victory = victory(board2, x_heroi2, y_heroi2);
 
-						board2[x_heroi2][y_heroi2] = ' ';
-						board2[x_heroi2][y_heroi2 + 1] = 'H';
-						y_heroi2 = y_heroi2 + 1;
+						if (board2[x_heroi2][y_heroi2] == 'H') {
+							board2[x_heroi2][y_heroi2] = ' ';
+							board2[x_heroi2][y_heroi2 + 1] = 'H';
+							y_heroi2 = y_heroi2 + 1;
+						}
 
+						if (board2[x_heroi2][y_heroi2] == 'K') {
+							board2[x_heroi2][y_heroi2] = ' ';
+							board2[x_heroi2][y_heroi2 + 1] = 'K';
+							y_heroi2 = y_heroi2 + 1;
+						}
+						//victory = victory(board2, x_heroi2, y_heroi2);
 					}
 					break;
 				default:
@@ -305,23 +350,19 @@ public class Main {
 					break;
 				}
 
-				// movimento do ogre--------------------------------------------------------
-
-				System.out.println("pre-movimento ogre");
-				printBoard(board2);
+				// -------------------------------------------------movimento do ogre--------------------------------------------------------
+				
 				do {
 					ogreOption = 1 + (int) (Math.random() * 4);
 
 				} while (testDirection(xOgre, yOgre, board2, ogreOption));
 
-				if (board2[1][8] == '$') {
-					board2[1][8] = 'k';
-				}
-
-				if (firstTime)
+				if (firstTime) {
 					firstTime = false;
-				else if (board2[xDano][yDano] != '$')
+					
+				} else if (board2[xDano][yDano] != '$') {
 					board2[xDano][yDano] = ' ';
+				}
 
 				switch (ogreOption) {
 
@@ -340,7 +381,8 @@ public class Main {
 							board2[xOgre][yOgre] = ' ';
 							board2[xOgre - 1][yOgre] = '$';
 							xOgre = xOgre - 1;
-						} else {
+						} 
+						else {
 							board2[xOgre][yOgre] = ' ';
 							board2[xOgre - 1][yOgre] = 'O';
 							xOgre = xOgre - 1;
@@ -373,7 +415,6 @@ public class Main {
 				// left
 				case 3:
 					if (board2[1][8] == '$' && board2[xOgre][yOgre - 1] != 'X' && board2[xOgre][yOgre - 1] != 'I') {
-
 						board2[1][8] = 'k';
 						board2[xOgre][yOgre - 1] = 'O';
 						yOgre = yOgre - 1;
@@ -384,7 +425,6 @@ public class Main {
 							board2[xOgre][yOgre - 1] = '$';
 							yOgre = yOgre - 1;
 						} else {
-
 							board2[xOgre][yOgre] = ' ';
 							board2[xOgre][yOgre - 1] = 'O';
 							yOgre = yOgre - 1;
@@ -399,9 +439,7 @@ public class Main {
 						board2[1][8] = 'k';
 						board2[xOgre][yOgre + 1] = 'O';
 						yOgre = yOgre + 1;
-					}
-
-					else if (board2[xOgre][yOgre + 1] != 'X' && board2[xOgre][yOgre + 1] != 'I') {
+					} else if (board2[xOgre][yOgre + 1] != 'X' && board2[xOgre][yOgre + 1] != 'I') {
 
 						if (board2[xOgre][yOgre + 1] == 'k') {
 							board2[xOgre][yOgre] = ' ';
@@ -417,10 +455,8 @@ public class Main {
 					}
 					break;
 				}
-				//Dano do ogre---------------------------------------
-				System.out.println("dano do ogre");
-				printBoard(board2);
-				
+				// Dano do ogre---------------------------------------
+
 				do {
 					ogreDano = 1 + (int) (Math.random() * 4);
 				} while (testDirection(xOgre, yOgre, board2, ogreDano));
@@ -429,7 +465,7 @@ public class Main {
 				// up
 				case 1:
 
-					if (board2[1][8] == '$' && xOgre!=1 && yOgre !=8) {
+					if (board2[1][8] == '$' && xOgre != 1 && yOgre != 8) {
 						board2[1][8] = 'k';
 					}
 
@@ -454,14 +490,14 @@ public class Main {
 					break;
 				// down
 				case 2:
-					if (board2[1][8] == '$' && xOgre!=1 && yOgre !=8){
+					if (board2[1][8] == '$' && xOgre != 1 && yOgre != 8) {
 						board2[1][8] = 'k';
 					}
 					if (board2[xOgre + 1][yOgre] != 'X' && board2[xOgre + 1][yOgre] != 'I'
 							&& board2[xOgre + 1][yOgre] != 'S') {
 
 						if (board2[xOgre + 1][yOgre] == 'k') {
-							board[xOgre + 1][yOgre] = '$';
+							board2[xOgre + 1][yOgre] = '$';
 
 						} else if (board2[xOgre + 1][yOgre] == 'K' || board2[xOgre + 1][yOgre] == 'H') {
 							board2[xOgre + 1][yOgre] = '*';
@@ -480,16 +516,14 @@ public class Main {
 				// left
 				case 3:
 
-					if (board2[1][8] == '$' && xOgre!=1 && yOgre !=8) {
+					if (board2[1][8] == '$' && xOgre != 1 && yOgre != 8) {
 						board2[1][8] = 'k';
 					}
 					if (board2[xOgre][yOgre - 1] != 'X' && board2[xOgre][yOgre - 1] != 'I'
 							&& board2[xOgre][yOgre - 1] != 'S') {
 						if (board2[xOgre][yOgre - 1] == 'k') {
 							board2[xOgre][yOgre - 1] = '$';
-						}
-
-						else if (board2[xOgre][yOgre - 1] == 'K' || board2[xOgre][yOgre - 1] == 'H') {
+						} else if (board2[xOgre][yOgre - 1] == 'K' || board2[xOgre][yOgre - 1] == 'H') {
 							board2[xOgre][yOgre - 1] = '*';
 							System.out.println("Game Over!");
 							state2 = false;
@@ -506,7 +540,7 @@ public class Main {
 				// right
 				case 4:
 
-					if (board2[1][8] == '$' && xOgre!=1 && yOgre !=8) {
+					if (board2[1][8] == '$' && xOgre != 1 && yOgre != 8) {
 						board2[1][8] = 'k';
 					}
 					if (board2[xOgre][yOgre + 1] != 'X' && board2[xOgre][yOgre + 1] != 'I'
@@ -514,9 +548,7 @@ public class Main {
 
 						if (board2[xOgre][yOgre + 1] == 'k') {
 							board2[xOgre][yOgre + 1] = '$';
-						}
-
-						else if (board2[xOgre][yOgre + 1] == 'K' || board2[xOgre][yOgre + 1] == 'H') {
+						} else if (board2[xOgre][yOgre + 1] == 'K' || board2[xOgre][yOgre + 1] == 'H') {
 							board2[xOgre][yOgre + 1] = '*';
 							System.out.println("Game Over!");
 							state2 = false;
@@ -538,7 +570,6 @@ public class Main {
 	}
 
 	// ----------------------------------Métodos-----------------------------------------------
-
 	// método imprimir tabuleiro
 	public static void printBoard(char[][] board) {
 		for (int i = 0; i < board.length; i++) {
@@ -552,9 +583,7 @@ public class Main {
 	// trata da colisão heroi-guarda
 	public static boolean gameOver(char[][] board, int x_heroi, int y_heroi) {
 		if (board[x_heroi - 1][y_heroi] == 'G' || board[x_heroi + 1][y_heroi] == 'G'
-				|| board[x_heroi][y_heroi - 1] == 'G' || board[x_heroi][y_heroi + 1] == 'G')
-
-		{
+				|| board[x_heroi][y_heroi - 1] == 'G' || board[x_heroi][y_heroi + 1] == 'G') {
 			System.out.println("Game Over!");
 			return false;
 		}
@@ -564,9 +593,7 @@ public class Main {
 	// trata da colisão heroi-saída
 	public static boolean victory(char[][] board, int x_heroi, int y_heroi) {
 		if (board[x_heroi - 1][y_heroi] == 'S' || board[x_heroi + 1][y_heroi] == 'S'
-				|| board[x_heroi][y_heroi - 1] == 'S' || board[x_heroi][y_heroi + 1] == 'S')
-
-		{
+				|| board[x_heroi][y_heroi - 1] == 'S' || board[x_heroi][y_heroi + 1] == 'S') {
 			System.out.println("Victory!");
 			return false;
 		}
@@ -575,7 +602,7 @@ public class Main {
 
 	/**
 	 * Testa a presença de um obstáculo na direção tomada
-	 * 
+	 *
 	 * @param x
 	 * @param y
 	 * @param board
@@ -585,23 +612,27 @@ public class Main {
 	public static boolean testDirection(int x, int y, char[][] board, int order) {
 		switch (order) {
 		case 1:
-			if (board[x - 1][y] == 'X' || board[x - 1][y] == 'I')
+			if (board[x - 1][y] == 'X' || board[x - 1][y] == 'I') {
 				return true;
+			}
 			break;
 
 		case 2:
-			if (board[x + 1][y] == 'X' || board[x + 1][y] == 'I')
+			if (board[x + 1][y] == 'X' || board[x + 1][y] == 'I') {
 				return true;
+			}
 			break;
 
 		case 3:
-			if (board[x][y - 1] == 'X' || board[x - 1][y - 1] == 'I')
+			if (board[x][y - 1] == 'X' || board[x - 1][y - 1] == 'I') {
 				return true;
+			}
 			break;
 
 		case 4:
-			if (board[x][y + 1] == 'X' || board[x][y + 1] == 'I')
+			if (board[x][y + 1] == 'X' || board[x][y + 1] == 'I') {
 				return true;
+			}
 			break;
 
 		}
