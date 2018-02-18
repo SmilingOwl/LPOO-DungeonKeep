@@ -11,6 +11,13 @@ public class Main {
 		boolean gameOver = true;
 		boolean victory = true;
 		boolean state2 = true;
+		int ogreOption = 0;
+		int ogreDano = 0;
+		boolean firstTime = true;
+
+		// coordenadas do dano
+		int xDano = 0;
+		int yDano = 0;
 
 		// coordenadas do heroi nivel 1
 		int x_heroi = 1;
@@ -24,6 +31,10 @@ public class Main {
 		int xGuarda = 1;
 		int yGuarda = 8;
 		int passoGuarda = 0; // contador de passos do guarda, para fazer a patrulha
+
+		// coordenadas do ogre
+		int xOgre = 1;
+		int yOgre = 5;
 
 		char[][] board = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
 				{ 'X', 'H', ' ', ' ', 'I', ' ', 'X', ' ', 'G', 'X' },
@@ -46,6 +57,7 @@ public class Main {
 				{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 				{ 'X', 'H', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 				{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' } };
+
 		// imprimir legenda
 		System.out.println("Legend:");
 		System.out.println("X -> Wall");
@@ -202,11 +214,9 @@ public class Main {
 			}
 			victory = false;
 		}
-
 		// -------------------------------------Level2-------------------------------------------
 
 		// imprimir legenda2
-
 		System.out.println("Legend:");
 		System.out.println("X -> Wall");
 		System.out.println("I -> Exit Door");
@@ -228,18 +238,75 @@ public class Main {
 				switch (option2) {
 				// up
 				case 1:
+
+					if (board2[x_heroi2 - 1][y_heroi2] != 'X' && board2[x_heroi2 - 1][y_heroi2] != 'I') {
+
+						if (board2[x_heroi2 - 1][y_heroi2] == 'k') {
+							board2[2][0] = 'S';
+						}
+
+						victory = victory(board2, x_heroi2, y_heroi2);
+
+						board2[x_heroi2][y_heroi2] = ' ';
+						board2[x_heroi2 - 1][y_heroi2] = 'H';
+						x_heroi2 = x_heroi2 - 1;
+
+					}
 					break;
+				// down
 				case 2:
+
+					if (board2[x_heroi2 + 1][y_heroi2] != 'X' && board2[x_heroi2 + 1][y_heroi2] != 'I') {
+
+						if (board2[x_heroi2 + 1][y_heroi2] == 'k') {
+							board2[2][0] = 'S';
+						}
+
+						victory = victory(board2, x_heroi2, y_heroi2);
+
+						board2[x_heroi2][y_heroi2] = ' ';
+						board2[x_heroi2 + 1][y_heroi2] = 'H';
+						x_heroi2 = x_heroi2 + 1;
+
+					}
 					break;
+				// left
 				case 3:
+					if (board2[x_heroi2][y_heroi2 - 1] != 'X' && board2[x_heroi2][y_heroi2 - 1] != 'I') {
+
+						if (board2[x_heroi2][y_heroi2 - 1] == 'k') {
+							board2[2][0] = 'S';
+						}
+						victory = victory(board2, x_heroi2, y_heroi2);
+
+						board2[x_heroi2][y_heroi2] = ' ';
+						board2[x_heroi2][y_heroi2 - 1] = 'H';
+						y_heroi2 = y_heroi2 - 1;
+					}
 					break;
+				// right
 				case 4:
+					if (board2[x_heroi2][y_heroi2 + 1] != 'X' && board2[x_heroi2][y_heroi2 + 1] != 'I') {
+
+						if (board2[x_heroi2][y_heroi2 + 1] == 'k') {
+							board2[2][0] = 'S';
+						}
+						victory = victory(board2, x_heroi2, y_heroi2);
+
+						board2[x_heroi2][y_heroi2] = ' ';
+						board2[x_heroi2][y_heroi2 + 1] = 'H';
+						y_heroi2 = y_heroi2 + 1;
+
+					}
 					break;
-					
+				default:
+					System.out.println("Invalid option!");
+					break;
 				}
 			}
 		}
 	}
+
 	// ----------------------------------Métodos-----------------------------------------------
 
 	// método imprimir tabuleiro
@@ -251,14 +318,6 @@ public class Main {
 			System.out.println();
 		}
 	}
-
-	/**
-	 * 
-	 * @param board
-	 * @param x_heroi
-	 * @param y_heroi
-	 * @return
-	 */
 
 	// trata da colisão heroi-guarda
 	public static boolean gameOver(char[][] board, int x_heroi, int y_heroi) {
@@ -272,18 +331,7 @@ public class Main {
 		return true;
 	}
 
-	/**
-	 * Trata da colisão do Heroi, 'H' e das escadas/sa´da 'S', vencendo o jogo
-	 * 
-	 * @param board
-	 *            tabuleiro onde se passa o jogo
-	 * @param x_heroi
-	 *            coordenada inicial do heroi na matriz (linhas)
-	 * @param y_heroi
-	 *            coordenada inicial do heroi na matriz (colunas)
-	 * @return retorna falso se existir colisão, o jogador vence, retorna true caso
-	 *         contrário
-	 */
+	// trata da colisão heroi-saída
 	public static boolean victory(char[][] board, int x_heroi, int y_heroi) {
 		if (board[x_heroi - 1][y_heroi] == 'S' || board[x_heroi + 1][y_heroi] == 'S'
 				|| board[x_heroi][y_heroi - 1] == 'S' || board[x_heroi][y_heroi + 1] == 'S')
@@ -294,4 +342,5 @@ public class Main {
 		}
 		return true;
 	}
+
 }
