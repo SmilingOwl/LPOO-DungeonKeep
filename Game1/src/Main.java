@@ -417,6 +417,121 @@ public class Main {
 					}
 					break;
 				}
+				//Dano do ogre---------------------------------------
+				System.out.println("dano do ogre");
+				printBoard(board2);
+				
+				do {
+					ogreDano = 1 + (int) (Math.random() * 4);
+				} while (testDirection(xOgre, yOgre, board2, ogreDano));
+
+				switch (ogreDano) {
+				// up
+				case 1:
+
+					if (board2[1][8] == '$' && xOgre!=1 && yOgre !=8) {
+						board2[1][8] = 'k';
+					}
+
+					if (board2[xOgre - 1][yOgre] != 'X' && board2[xOgre - 1][yOgre] != 'I'
+							&& board2[xOgre - 1][yOgre] != 'S') {
+						if (board2[xOgre - 1][yOgre] == 'k') {
+							board2[xOgre - 1][yOgre] = '$';
+
+						} else if (board2[xOgre - 1][yOgre] == 'K' || board2[xOgre - 1][yOgre] == 'H') {
+							board2[xOgre - 1][yOgre] = '*';
+							System.out.println("Game Over!");
+							state2 = false;
+
+						} else {
+							board2[xOgre - 1][yOgre] = '*';
+							xDano = xOgre - 1;
+							yDano = yOgre;
+
+						}
+
+					}
+					break;
+				// down
+				case 2:
+					if (board2[1][8] == '$' && xOgre!=1 && yOgre !=8){
+						board2[1][8] = 'k';
+					}
+					if (board2[xOgre + 1][yOgre] != 'X' && board2[xOgre + 1][yOgre] != 'I'
+							&& board2[xOgre + 1][yOgre] != 'S') {
+
+						if (board2[xOgre + 1][yOgre] == 'k') {
+							board[xOgre + 1][yOgre] = '$';
+
+						} else if (board2[xOgre + 1][yOgre] == 'K' || board2[xOgre + 1][yOgre] == 'H') {
+							board2[xOgre + 1][yOgre] = '*';
+							System.out.println("Game Over!");
+							state2 = false;
+
+						} else {
+							board2[xOgre + 1][yOgre] = '*';
+							xDano = xOgre + 1;
+							yDano = yOgre;
+
+						}
+
+					}
+					break;
+				// left
+				case 3:
+
+					if (board2[1][8] == '$' && xOgre!=1 && yOgre !=8) {
+						board2[1][8] = 'k';
+					}
+					if (board2[xOgre][yOgre - 1] != 'X' && board2[xOgre][yOgre - 1] != 'I'
+							&& board2[xOgre][yOgre - 1] != 'S') {
+						if (board2[xOgre][yOgre - 1] == 'k') {
+							board2[xOgre][yOgre - 1] = '$';
+						}
+
+						else if (board2[xOgre][yOgre - 1] == 'K' || board2[xOgre][yOgre - 1] == 'H') {
+							board2[xOgre][yOgre - 1] = '*';
+							System.out.println("Game Over!");
+							state2 = false;
+						} else {
+
+							board2[xOgre][yOgre - 1] = '*';
+							xDano = xOgre;
+							yDano = yOgre - 1;
+
+						}
+
+					}
+					break;
+				// right
+				case 4:
+
+					if (board2[1][8] == '$' && xOgre!=1 && yOgre !=8) {
+						board2[1][8] = 'k';
+					}
+					if (board2[xOgre][yOgre + 1] != 'X' && board2[xOgre][yOgre + 1] != 'I'
+							&& board2[xOgre][yOgre + 1] != 'S') {
+
+						if (board2[xOgre][yOgre + 1] == 'k') {
+							board2[xOgre][yOgre + 1] = '$';
+						}
+
+						else if (board2[xOgre][yOgre + 1] == 'K' || board2[xOgre][yOgre + 1] == 'H') {
+							board2[xOgre][yOgre + 1] = '*';
+							System.out.println("Game Over!");
+							state2 = false;
+
+						} else {
+
+							board2[xOgre][yOgre + 1] = '*';
+							xDano = xOgre;
+							yDano = yOgre + 1;
+
+						}
+
+					}
+					break;
+				}
 
 			}
 		}
