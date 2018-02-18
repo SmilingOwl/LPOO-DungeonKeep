@@ -4,20 +4,23 @@ public class Main {
 
 	public static void main(String[] args) {
 
+		// variáveis
 		Scanner option = new Scanner(System.in);
 		int option1 = 0;
-		boolean state = true;
+		int option2 = 0;
+		boolean gameOver = true;
+		boolean victory = true;
 
-		// coordenadas do heroi
 
+		// coordenadas do heroi nivel 1
 		int x_heroi = 1;
 		int y_heroi = 1;
 
-		// coordenadas do guarda
 
+		// coordenadas do guarda
 		int xGuarda = 1;
 		int yGuarda = 8;
-		int passoGuarda = 0;
+		int passoGuarda = 0; // contador de passos do guarda, para fazer a patrulha
 
 		char[][] board = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
 				{ 'X', 'H', ' ', ' ', 'I', ' ', 'X', ' ', 'G', 'X' },
@@ -27,11 +30,11 @@ public class Main {
 				{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 				{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 				{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' },
-				{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'K', ' ', 'X' },
+				{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
 				{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' } };
 
-		// imprimir legenda
 
+		// imprimir legenda
 		System.out.println("Legend:");
 		System.out.println("X -> Wall");
 		System.out.println("I -> Door");
@@ -39,8 +42,9 @@ public class Main {
 		System.out.println("G -> Guard");
 		System.out.println("K -> Lever");
 		System.out.println("emplty cell - free space");
-		System.out.println("\n\n");
+		System.out.println();
 
+		// imprime o tabuleiro
 		printBoard(board);
 
 		// perguntar ao utilizador a direção
@@ -52,66 +56,47 @@ public class Main {
 		System.out.println("Left -> press 3");
 		System.out.println("Right -> press 4");
 		System.out.println();
-		
-		
-		while (state) {
+
+		// jogo
+		while (gameOver && victory) {
 
 			printBoard(board);
 
+			// lê input do utilizador
 			option1 = option.nextInt();
 
 			switch (option1) {
+			// up
 			case 1:
+
 				if (board[x_heroi - 1][y_heroi] != 'X' && board[x_heroi - 1][y_heroi] != 'I') {
 
-					if (board[x_heroi - 1][y_heroi] == 'K') {
+					if (board[x_heroi - 1][y_heroi] == 'k') {
 						board[5][0] = 'S';
 						board[6][0] = 'S';
 					}
-					if (board[x_heroi - 1][y_heroi] == 'G' || board[x_heroi + 1][y_heroi] == 'G'
-							|| board[x_heroi][y_heroi - 1] == 'G' || board[x_heroi][y_heroi + 1] == 'G')
 
-						{
-						state = false;
-						System.out.println("Game Over!");
-						}
-					
-					if (board[x_heroi - 1][y_heroi] == 'S' || board[x_heroi + 1][y_heroi] == 'S'
-							|| board[x_heroi][y_heroi - 1] == 'S' || board[x_heroi][y_heroi + 1] == 'S')
+					gameOver = gameOver(board, x_heroi, y_heroi);
 
-						{
-						state = false;	
-						System.out.println("Victory!");
-						}
+					victory = victory(board, x_heroi, y_heroi);
 
 					board[x_heroi][y_heroi] = ' ';
 					board[x_heroi - 1][y_heroi] = 'H';
 					x_heroi = x_heroi - 1;
-
 				}
 				break;
+			// down
 			case 2:
+
 				if (board[x_heroi + 1][y_heroi] != 'X' && board[x_heroi + 1][y_heroi] != 'I') {
 
-					if (board[x_heroi + 1][y_heroi] == 'K') {
+					if (board[x_heroi + 1][y_heroi] == 'k') {
 						board[5][0] = 'S';
 						board[6][0] = 'S';
 					}
-					if (board[x_heroi - 1][y_heroi] == 'G' || board[x_heroi + 1][y_heroi] == 'G'
-							|| board[x_heroi][y_heroi - 1] == 'G' || board[x_heroi][y_heroi + 1] == 'G')
 
-					{
-						state = false;
-						System.out.println("Game Over!");
-						}
-					
-					if (board[x_heroi - 1][y_heroi] == 'S' || board[x_heroi + 1][y_heroi] == 'S'
-							|| board[x_heroi][y_heroi - 1] == 'S' || board[x_heroi][y_heroi + 1] == 'S')
-
-					{
-						state = false;	
-						System.out.println("Victory!");
-						}
+					gameOver = gameOver(board, x_heroi, y_heroi);
+					victory = victory(board, x_heroi, y_heroi);
 
 					board[x_heroi][y_heroi] = ' ';
 					board[x_heroi + 1][y_heroi] = 'H';
@@ -119,28 +104,16 @@ public class Main {
 
 				}
 				break;
+			// left
 			case 3:
 				if (board[x_heroi][y_heroi - 1] != 'X' && board[x_heroi][y_heroi - 1] != 'I') {
 
-					if (board[x_heroi][y_heroi - 1] == 'K') {
+					if (board[x_heroi][y_heroi - 1] == 'k') {
 						board[5][0] = 'S';
 						board[6][0] = 'S';
 					}
-
-					if (board[x_heroi - 1][y_heroi] == 'G' || board[x_heroi + 1][y_heroi] == 'G'
-							|| board[x_heroi][y_heroi - 1] == 'G' || board[x_heroi][y_heroi + 1] == 'G')
-
-					{
-						state = false;
-						System.out.println("Game Over!");
-						}
-					if (board[x_heroi - 1][y_heroi] == 'S' || board[x_heroi + 1][y_heroi] == 'S'
-							|| board[x_heroi][y_heroi - 1] == 'S' || board[x_heroi][y_heroi + 1] == 'S')
-
-					{
-						state = false;	
-						System.out.println("Victory!");
-						}
+					gameOver = gameOver(board, x_heroi, y_heroi);
+					victory = victory(board, x_heroi, y_heroi);
 
 					board[x_heroi][y_heroi] = ' ';
 					board[x_heroi][y_heroi - 1] = 'H';
@@ -148,28 +121,18 @@ public class Main {
 
 				}
 				break;
+			// right
 			case 4:
 				if (board[x_heroi][y_heroi + 1] != 'X' && board[x_heroi][y_heroi + 1] != 'I') {
 
-					if (board[x_heroi][y_heroi + 1] == 'K') {
+					if (board[x_heroi][y_heroi + 1] == 'k') {
 						board[5][0] = 'S';
 						board[6][0] = 'S';
 					}
-					if (board[x_heroi - 1][y_heroi] == 'G' || board[x_heroi + 1][y_heroi] == 'G'
-							|| board[x_heroi][y_heroi - 1] == 'G' || board[x_heroi][y_heroi + 1] == 'G')
 
-					{
-						state = false;
-						System.out.println("Game Over!");
-						}
+					gameOver = gameOver(board, x_heroi, y_heroi);
 
-					if (board[x_heroi - 1][y_heroi] == 'S' || board[x_heroi + 1][y_heroi] == 'S'
-							|| board[x_heroi][y_heroi - 1] == 'S' || board[x_heroi][y_heroi + 1] == 'S')
-
-					{
-						state = false;	
-						System.out.println("Victory!");
-						}
+					victory = victory(board, x_heroi, y_heroi);
 
 					board[x_heroi][y_heroi] = ' ';
 					board[x_heroi][y_heroi + 1] = 'H';
@@ -182,71 +145,100 @@ public class Main {
 				break;
 			}
 
-			if(passoGuarda==24)
-				passoGuarda=0;
-			
-			if (passoGuarda == 0) 
-			{
+			if (passoGuarda == 24)
+				passoGuarda = 0;
+
+			if (passoGuarda == 0) {
 				board[xGuarda][yGuarda] = ' ';
-				board[xGuarda][yGuarda-1]='G';
+				board[xGuarda][yGuarda - 1] = 'G';
 				passoGuarda++;
-				
-				yGuarda=yGuarda-1;
+
+				yGuarda = yGuarda - 1;
+			} else if (passoGuarda < 5) {
+				board[xGuarda][yGuarda] = ' ';
+				board[xGuarda + 1][yGuarda] = 'G';
+				passoGuarda++;
+
+				xGuarda = xGuarda + 1;
+
+			} else if (passoGuarda < 11) {
+				board[xGuarda][yGuarda] = ' ';
+				board[xGuarda][yGuarda - 1] = 'G';
+				passoGuarda++;
+
+				yGuarda = yGuarda - 1;
+
+			} else if (passoGuarda == 11) {
+				board[xGuarda][yGuarda] = ' ';
+				board[xGuarda + 1][yGuarda] = 'G';
+				passoGuarda++;
+
+				xGuarda = xGuarda + 1;
+
+			} else if (passoGuarda < 19) {
+				board[xGuarda][yGuarda] = ' ';
+				board[xGuarda][yGuarda + 1] = 'G';
+				passoGuarda++;
+
+				yGuarda = yGuarda + 1;
+			} else if (passoGuarda < 24) {
+				board[xGuarda][yGuarda] = ' ';
+				board[xGuarda - 1][yGuarda] = 'G';
+				passoGuarda++;
+
+				xGuarda = xGuarda - 1;
 			}
-			else if (passoGuarda < 5) 
-			{
-				board[xGuarda][yGuarda] = ' ';
-				board[xGuarda+1][yGuarda]='G';
-				passoGuarda++;
-				
-				xGuarda=xGuarda+1;
-
-			} 
-			else if (passoGuarda < 11) 
-			{
-				board[xGuarda][yGuarda] = ' ';
-				board[xGuarda][yGuarda-1]='G';
-				passoGuarda++;
-				
-				yGuarda=yGuarda-1;
-
-			} 
-			else if (passoGuarda == 11) 
-			{
-				board[xGuarda][yGuarda] = ' ';
-				board[xGuarda+1][yGuarda]='G';
-				passoGuarda++;
-				
-				xGuarda=xGuarda+1;
-
-			} 
-			else if (passoGuarda < 19) 
-			{
-				board[xGuarda][yGuarda] = ' ';
-				board[xGuarda][yGuarda+1]='G';
-				passoGuarda++;
-				
-				yGuarda=yGuarda+1;
-			} 
-			else if (passoGuarda < 24) 
-			{
-				board[xGuarda][yGuarda] = ' ';
-				board[xGuarda-1][yGuarda]='G';
-				passoGuarda++;
-				
-				xGuarda=xGuarda-1;
-			}
-
+			victory = false;
 		}
 
 	}
+
+	// ----------------------------------Métodos-----------------------------------------------
+
 	// método imprimir tabuleiro
-		public static void printBoard(char[][] board) {
-			for (int i = 0; i < board.length; i++) {
-				for (int j = 0; j < board[i].length; j++) {
-					System.out.print(board[i][j] + " ");
-				}
-				System.out.println();
+	public static void printBoard(char[][] board) {
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				System.out.print(board[i][j] + " ");
 			}
+			System.out.println();
 		}
+	}
+	/**
+	 * 
+	 * @param board
+	 * @param x_heroi
+	 * @param y_heroi
+	 * @return
+	 */
+
+	// trata da colisão heroi-guarda
+	public static boolean gameOver(char[][] board, int x_heroi, int y_heroi) {
+		if (board[x_heroi - 1][y_heroi] == 'G' || board[x_heroi + 1][y_heroi] == 'G'
+				|| board[x_heroi][y_heroi - 1] == 'G' || board[x_heroi][y_heroi + 1] == 'G')
+
+		{
+			System.out.println("Game Over!");
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 *  Trata da colisão do Heroi, 'H' e das escadas/sa´da 'S', vencendo o jogo
+	 * @param board tabuleiro onde se passa o jogo
+	 * @param x_heroi coordenada inicial do heroi na matriz (linhas)
+	 * @param y_heroi coordenada inicial do heroi na matriz (colunas)
+	 * @return retorna falso se existir colisão, o jogador vence, retorna true caso contrário
+	 */
+	public static boolean victory(char[][] board, int x_heroi, int y_heroi) {
+		if (board[x_heroi - 1][y_heroi] == 'S' || board[x_heroi + 1][y_heroi] == 'S'
+				|| board[x_heroi][y_heroi - 1] == 'S' || board[x_heroi][y_heroi + 1] == 'S')
+
+		{
+			System.out.println("Victory!");
+			return false;
+		}
+		return true;
+	}
 }
