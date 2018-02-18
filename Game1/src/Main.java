@@ -10,12 +10,15 @@ public class Main {
 		int option2 = 0;
 		boolean gameOver = true;
 		boolean victory = true;
-
+		boolean state2 = true;
 
 		// coordenadas do heroi nivel 1
 		int x_heroi = 1;
 		int y_heroi = 1;
 
+		// coordenadas do heroi nivel 2
+		int x_heroi2 = 8;
+		int y_heroi2 = 1;
 
 		// coordenadas do guarda
 		int xGuarda = 1;
@@ -33,7 +36,16 @@ public class Main {
 				{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
 				{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' } };
 
-
+		char[][] board2 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+				{ 'X', ' ', ' ', ' ', 'X', 'O', ' ', ' ', 'k', 'X' },
+				{ 'I', ' ', ' ', ' ', 'X', 'X', 'X', 'X', 'X', 'X' },
+				{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+				{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+				{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+				{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+				{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+				{ 'X', 'H', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+				{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' } };
 		// imprimir legenda
 		System.out.println("Legend:");
 		System.out.println("X -> Wall");
@@ -191,8 +203,43 @@ public class Main {
 			victory = false;
 		}
 
-	}
+		// -------------------------------------Level2-------------------------------------------
 
+		// imprimir legenda2
+
+		System.out.println("Legend:");
+		System.out.println("X -> Wall");
+		System.out.println("I -> Exit Door");
+		System.out.println("H -> Hero");
+		System.out.println("O -> Crazy Ogre");
+		System.out.println("K -> key");
+		System.out.println("emplty cell - free space");
+		System.out.println();
+
+		if (victory == false) {
+			while (state2) {
+
+				System.out.println("pre-movimento");
+				printBoard(board2);
+
+				// lê input do utilizador
+				option2 = option.nextInt();
+
+				switch (option2) {
+				// up
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+					
+				}
+			}
+		}
+	}
 	// ----------------------------------Métodos-----------------------------------------------
 
 	// método imprimir tabuleiro
@@ -204,6 +251,7 @@ public class Main {
 			System.out.println();
 		}
 	}
+
 	/**
 	 * 
 	 * @param board
@@ -225,11 +273,16 @@ public class Main {
 	}
 
 	/**
-	 *  Trata da colisão do Heroi, 'H' e das escadas/sa´da 'S', vencendo o jogo
-	 * @param board tabuleiro onde se passa o jogo
-	 * @param x_heroi coordenada inicial do heroi na matriz (linhas)
-	 * @param y_heroi coordenada inicial do heroi na matriz (colunas)
-	 * @return retorna falso se existir colisão, o jogador vence, retorna true caso contrário
+	 * Trata da colisão do Heroi, 'H' e das escadas/sa´da 'S', vencendo o jogo
+	 * 
+	 * @param board
+	 *            tabuleiro onde se passa o jogo
+	 * @param x_heroi
+	 *            coordenada inicial do heroi na matriz (linhas)
+	 * @param y_heroi
+	 *            coordenada inicial do heroi na matriz (colunas)
+	 * @return retorna falso se existir colisão, o jogador vence, retorna true caso
+	 *         contrário
 	 */
 	public static boolean victory(char[][] board, int x_heroi, int y_heroi) {
 		if (board[x_heroi - 1][y_heroi] == 'S' || board[x_heroi + 1][y_heroi] == 'S'
