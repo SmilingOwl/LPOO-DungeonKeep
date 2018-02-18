@@ -231,6 +231,7 @@ public class Main {
 
 				System.out.println("pre-movimento");
 				printBoard(board2);
+				
 
 				// lê input do utilizador
 				option2 = option.nextInt();
@@ -303,6 +304,120 @@ public class Main {
 					System.out.println("Invalid option!");
 					break;
 				}
+
+				// movimento do ogre--------------------------------------------------------
+
+				System.out.println("pre-movimento ogre");
+				printBoard(board2);
+				do {
+					ogreOption = 1 + (int) (Math.random() * 4);
+
+				} while (testDirection(xOgre, yOgre, board2, ogreOption));
+
+				if (board2[1][8] == '$') {
+					board2[1][8] = 'k';
+				}
+
+				if (firstTime)
+					firstTime = false;
+				else if (board2[xDano][yDano] != '$')
+					board2[xDano][yDano] = ' ';
+
+				switch (ogreOption) {
+
+				// up
+				case 1:
+
+					if (board2[1][8] == '$' && board2[xOgre - 1][yOgre] != 'X' && board2[xOgre - 1][yOgre] != 'I') {
+
+						board2[1][8] = 'k';
+						board2[xOgre - 1][yOgre] = 'O';
+						xOgre = xOgre - 1;
+
+					} else if (board2[xOgre - 1][yOgre] != 'X' && board2[xOgre - 1][yOgre] != 'I') {
+
+						if (board2[xOgre - 1][yOgre] == 'k') {
+							board2[xOgre][yOgre] = ' ';
+							board2[xOgre - 1][yOgre] = '$';
+							xOgre = xOgre - 1;
+						} else {
+							board2[xOgre][yOgre] = ' ';
+							board2[xOgre - 1][yOgre] = 'O';
+							xOgre = xOgre - 1;
+						}
+
+					}
+					break;
+				// down
+				case 2:
+					if (board2[1][8] == '$' && board2[xOgre + 1][yOgre] != 'X' && board2[xOgre + 1][yOgre] != 'I') {
+
+						board2[1][8] = 'k';
+						board2[xOgre + 1][yOgre] = 'O';
+						xOgre = xOgre + 1;
+
+					} else if (board2[xOgre + 1][yOgre] != 'X' && board2[xOgre + 1][yOgre] != 'I') {
+
+						if (board2[xOgre + 1][yOgre] == 'k') {
+							board2[xOgre][yOgre] = ' ';
+							board2[xOgre + 1][yOgre] = '$';
+							xOgre = xOgre + 1;
+						} else {
+							board2[xOgre][yOgre] = ' ';
+							board2[xOgre + 1][yOgre] = 'O';
+							xOgre = xOgre + 1;
+						}
+
+					}
+					break;
+				// left
+				case 3:
+					if (board2[1][8] == '$' && board2[xOgre][yOgre - 1] != 'X' && board2[xOgre][yOgre - 1] != 'I') {
+
+						board2[1][8] = 'k';
+						board2[xOgre][yOgre - 1] = 'O';
+						yOgre = yOgre - 1;
+					} else if (board2[xOgre][yOgre - 1] != 'X' && board2[xOgre][yOgre - 1] != 'I') {
+
+						if (board2[xOgre][yOgre - 1] == 'k') {
+							board2[xOgre][yOgre] = ' ';
+							board2[xOgre][yOgre - 1] = '$';
+							yOgre = yOgre - 1;
+						} else {
+
+							board2[xOgre][yOgre] = ' ';
+							board2[xOgre][yOgre - 1] = 'O';
+							yOgre = yOgre - 1;
+						}
+
+					}
+					break;
+				// right
+				case 4:
+					if (board2[1][8] == '$' && board2[xOgre][yOgre + 1] != 'X' && board2[xOgre][yOgre + 1] != 'I') {
+
+						board2[1][8] = 'k';
+						board2[xOgre][yOgre + 1] = 'O';
+						yOgre = yOgre + 1;
+					}
+
+					else if (board2[xOgre][yOgre + 1] != 'X' && board2[xOgre][yOgre + 1] != 'I') {
+
+						if (board2[xOgre][yOgre + 1] == 'k') {
+							board2[xOgre][yOgre] = ' ';
+							board2[xOgre][yOgre + 1] = '$';
+							yOgre = yOgre + 1;
+
+						} else {
+							board2[xOgre][yOgre] = ' ';
+							board2[xOgre][yOgre + 1] = 'O';
+							yOgre = yOgre + 1;
+						}
+
+					}
+					break;
+				}
+
 			}
 		}
 	}
@@ -341,6 +456,42 @@ public class Main {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * Testa a presença de um obstáculo na direção tomada
+	 * 
+	 * @param x
+	 * @param y
+	 * @param board
+	 * @param order
+	 * @return retorna true se encontrar parede e false caso contrário
+	 */
+	public static boolean testDirection(int x, int y, char[][] board, int order) {
+		switch (order) {
+		case 1:
+			if (board[x - 1][y] == 'X' || board[x - 1][y] == 'I')
+				return true;
+			break;
+
+		case 2:
+			if (board[x + 1][y] == 'X' || board[x + 1][y] == 'I')
+				return true;
+			break;
+
+		case 3:
+			if (board[x][y - 1] == 'X' || board[x - 1][y - 1] == 'I')
+				return true;
+			break;
+
+		case 4:
+			if (board[x][y + 1] == 'X' || board[x][y + 1] == 'I')
+				return true;
+			break;
+
+		}
+
+		return false;
 	}
 
 }
