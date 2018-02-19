@@ -14,6 +14,7 @@ public class Main {
 		int ogreOption = 0;
 		int ogreDano = 0;
 		boolean firstTime = true;
+		boolean key = false;
 
 		// coordenadas do dano
 		int xDano = 0;
@@ -88,7 +89,7 @@ public class Main {
 
 			// lê input do utilizador
 			option1 = option.nextInt();
-			
+
 			switch (option1) {
 			// up
 			case 1:
@@ -238,111 +239,152 @@ public class Main {
 				switch (option2) {
 				// up
 				case 1:
-					
-					if (board2[x_heroi2 - 1][y_heroi2] != 'X' && board2[x_heroi2 - 1][y_heroi2] != 'I') {
 
-						if (board2[x_heroi2 - 1][y_heroi2] == 'k') {
+					if (board2[x_heroi2 - 1][y_heroi2] != 'X') {
+						if (board2[x_heroi2 - 1][y_heroi2] != 'I') {
+
+							if (board2[x_heroi2 - 1][y_heroi2] == 'k') {
+								// board2[2][0] = 'S';
+								board2[x_heroi2][y_heroi2] = ' ';
+								board2[x_heroi2 - 1][y_heroi2] = 'K';
+								x_heroi2 = x_heroi2 - 1;
+								key = true;
+								break;
+							}
+
+							if (board2[x_heroi2][y_heroi2] == 'H') {
+								board2[x_heroi2][y_heroi2] = ' ';
+								board2[x_heroi2 - 1][y_heroi2] = 'H';
+								x_heroi2 = x_heroi2 - 1;
+							}
+
+							if (board2[x_heroi2 - 1][y_heroi2] == 'S') {
+								System.out.println("Victory!");
+								state2 = false;
+							}
+
+							if (board2[x_heroi2][y_heroi2] == 'K') {
+								board2[x_heroi2][y_heroi2] = ' ';
+								board2[x_heroi2 - 1][y_heroi2] = 'K';
+								x_heroi2 = x_heroi2 - 1;
+							}
+
+						} else if (board2[x_heroi2 - 1][y_heroi2] == 'I' && key == true)
 							board2[2][0] = 'S';
-							board2[x_heroi2][y_heroi2] = ' ';
-							board2[x_heroi2 - 1][y_heroi2] = 'K';
-							x_heroi2 = x_heroi2 - 1;
-							break;
-						}
-
-						if (board2[x_heroi2][y_heroi2] == 'H') {
-							board2[x_heroi2][y_heroi2] = ' ';
-							board2[x_heroi2 - 1][y_heroi2] = 'H';
-							x_heroi2 = x_heroi2 - 1;
-						}
-
-						if (board2[x_heroi2][y_heroi2] == 'K') {
-							board2[x_heroi2][y_heroi2] = ' ';
-							board2[x_heroi2 - 1][y_heroi2] = 'K';
-							x_heroi2 = x_heroi2 - 1;
-						}
-						
-						//victory = victory(board2, x_heroi2, y_heroi2);
 					}
 					break;
 				// down
 				case 2:
 
-					if (board2[x_heroi2 + 1][y_heroi2] != 'X' && board2[x_heroi2 + 1][y_heroi2] != 'I') {
+					if (board2[x_heroi2 + 1][y_heroi2] != 'X') {
+						if (board2[x_heroi2 + 1][y_heroi2] != 'I') {
 
-						if (board2[x_heroi2 + 1][y_heroi2] == 'k') {
+							if (board2[x_heroi2 + 1][y_heroi2] == 'k') {
+								// board2[2][0] = 'S';
+								board2[x_heroi2][y_heroi2] = ' ';
+								board2[x_heroi2 + 1][y_heroi2] = 'K';
+								x_heroi2 = x_heroi2 + 1;
+								key = true;
+								break;
+							}
+
+							if (board2[x_heroi2][y_heroi2] == 'H') {
+
+								board2[x_heroi2][y_heroi2] = ' ';
+								board2[x_heroi2 + 1][y_heroi2] = 'H';
+								x_heroi2 = x_heroi2 + 1;
+
+							}
+
+							if (board2[x_heroi2 + 1][y_heroi2] == 'S') {
+								System.out.println("Victory!");
+								state2 = false;
+							}
+
+							if (board2[x_heroi2][y_heroi2] == 'K') {
+								board2[x_heroi2][y_heroi2] = ' ';
+								board2[x_heroi2 + 1][y_heroi2] = 'K';
+								x_heroi2 = x_heroi2 + 1;
+							}
+						} else if (board2[x_heroi2 + 1][y_heroi2] == 'I' && key == true)
 							board2[2][0] = 'S';
-							board2[x_heroi2][y_heroi2] = ' ';
-							board2[x_heroi2 + 1][y_heroi2] = 'K';
-							x_heroi2 = x_heroi2 + 1;
-							break;
-						}
-
-						if (board2[x_heroi2][y_heroi2] == 'H') {
-
-							board2[x_heroi2][y_heroi2] = ' ';
-							board2[x_heroi2 + 1][y_heroi2] = 'H';
-							x_heroi2 = x_heroi2 + 1;
-
-						}
-
-						if (board2[x_heroi2 + 1][y_heroi2] == 'K') {
-							board2[x_heroi2][y_heroi2] = ' ';
-							board2[x_heroi2 + 1][y_heroi2] = 'K';
-							x_heroi2 = x_heroi2 + 1;
-						}
-						//victory = victory(board2, x_heroi2, y_heroi2);
 					}
 					break;
 				// left
 				case 3:
-					if (board2[x_heroi2][y_heroi2 - 1] != 'X' && board2[x_heroi2][y_heroi2 - 1] != 'I') {
+					if (board2[x_heroi2][y_heroi2 - 1] != 'X') {
 
-						if (board2[x_heroi2][y_heroi2 - 1] == 'k') {
+						if (board2[x_heroi2][y_heroi2 - 1] != 'I') {
+
+							if (board2[x_heroi2][y_heroi2 - 1] == 'k') {
+
+								// board2[2][0] = 'S';
+								board2[x_heroi2][y_heroi2] = ' ';
+								board2[x_heroi2][y_heroi2 - 1] = 'K';
+								y_heroi2 = y_heroi2 - 1;
+								key = true;
+								break;
+							}
+							if (board2[x_heroi2][y_heroi2] == 'H') {
+
+								board2[x_heroi2][y_heroi2] = ' ';
+								board2[x_heroi2][y_heroi2 - 1] = 'H';
+								y_heroi2 = y_heroi2 - 1;
+							}
+
+							if (board2[x_heroi2][y_heroi2 - 1] == 'S') {
+								System.out.println("Victory!");
+								state2 = false;
+							}
+
+							if (board2[x_heroi2][y_heroi2] == 'K') {
+
+								board2[x_heroi2][y_heroi2] = ' ';
+								board2[x_heroi2][y_heroi2 - 1] = 'K';
+								y_heroi2 = y_heroi2 - 1;
+							}
+
+						} else if (board2[x_heroi2][y_heroi2 - 1] == 'I' && key == true)
+
 							board2[2][0] = 'S';
-							board2[x_heroi2][y_heroi2] = ' ';
-							board2[x_heroi2][y_heroi2 - 1] = 'K';
-							y_heroi2 = y_heroi2 - 1;
-							break;
-						}
-						if (board2[x_heroi2][y_heroi2] == 'H') {
 
-							board2[x_heroi2][y_heroi2] = ' ';
-							board2[x_heroi2][y_heroi2 - 1] = 'H';
-							y_heroi2 = y_heroi2 - 1;
-						}
-						if (board2[x_heroi2][y_heroi2] == 'K') {
-							board2[x_heroi2][y_heroi2] = ' ';
-							board2[x_heroi2][y_heroi2 - 1] = 'K';
-							y_heroi2 = y_heroi2 - 1;
-						}
-						//victory = victory(board2, x_heroi2, y_heroi2);
 					}
 					break;
 
 				// right
 				case 4:
-					if (board2[x_heroi2][y_heroi2 + 1] != 'X' && board2[x_heroi2][y_heroi2 + 1] != 'I') {
+					if (board2[x_heroi2][y_heroi2 + 1] != 'X') {
+						if (board2[x_heroi2][y_heroi2 + 1] != 'I') {
 
-						if (board2[x_heroi2][y_heroi2 + 1] == 'k') {
+							if (board2[x_heroi2][y_heroi2 + 1] == 'k') {
+								// board2[2][0] = 'S';
+								board2[x_heroi2][y_heroi2] = ' ';
+								board2[x_heroi][y_heroi2 + 1] = 'K';
+								y_heroi2 = y_heroi2 + 1;
+								key = true;
+								break;
+							}
+
+							if (board2[x_heroi2][y_heroi2] == 'H') {
+								board2[x_heroi2][y_heroi2] = ' ';
+								board2[x_heroi2][y_heroi2 + 1] = 'H';
+								y_heroi2 = y_heroi2 + 1;
+							}
+
+							if (board2[x_heroi2][y_heroi2 + 1] == 'S') {
+								System.out.println("Victory!");
+								state2 = false;
+							}
+
+							if (board2[x_heroi2][y_heroi2] == 'K') {
+								board2[x_heroi2][y_heroi2] = ' ';
+								board2[x_heroi2][y_heroi2 + 1] = 'K';
+								y_heroi2 = y_heroi2 + 1;
+							}
+
+						} else if (board2[x_heroi2][y_heroi2 + 1] == 'I' && key == true) {
 							board2[2][0] = 'S';
-							board2[x_heroi2][y_heroi2] = ' ';
-							board2[x_heroi][y_heroi2 + 1] = 'K';
-							y_heroi2 = y_heroi2 + 1;
-							break;
 						}
-
-						if (board2[x_heroi2][y_heroi2] == 'H') {
-							board2[x_heroi2][y_heroi2] = ' ';
-							board2[x_heroi2][y_heroi2 + 1] = 'H';
-							y_heroi2 = y_heroi2 + 1;
-						}
-
-						if (board2[x_heroi2][y_heroi2] == 'K') {
-							board2[x_heroi2][y_heroi2] = ' ';
-							board2[x_heroi2][y_heroi2 + 1] = 'K';
-							y_heroi2 = y_heroi2 + 1;
-						}
-						//victory = victory(board2, x_heroi2, y_heroi2);
 					}
 					break;
 				default:
@@ -350,8 +392,9 @@ public class Main {
 					break;
 				}
 
-				// -------------------------------------------------movimento do ogre--------------------------------------------------------
-				
+				// -------------------------------------------------MOVIMENTO DO
+				// OGRE--------------------------------------------------------
+
 				do {
 					ogreOption = 1 + (int) (Math.random() * 4);
 
@@ -359,7 +402,7 @@ public class Main {
 
 				if (firstTime) {
 					firstTime = false;
-					
+
 				} else if (board2[xDano][yDano] != '$') {
 					board2[xDano][yDano] = ' ';
 				}
@@ -381,8 +424,7 @@ public class Main {
 							board2[xOgre][yOgre] = ' ';
 							board2[xOgre - 1][yOgre] = '$';
 							xOgre = xOgre - 1;
-						} 
-						else {
+						} else {
 							board2[xOgre][yOgre] = ' ';
 							board2[xOgre - 1][yOgre] = 'O';
 							xOgre = xOgre - 1;
