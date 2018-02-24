@@ -1,7 +1,10 @@
 package dkeep.logic;
 
-public class Character 
+abstract public class Character 
 {
-	public int[] coordinates;
+	private int[] coordinates=new int[2];
+	
+	
+
 
 }
