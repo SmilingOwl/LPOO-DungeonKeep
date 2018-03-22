@@ -1,7 +1,9 @@
 package dkeep.logic;
 
 public class Board {
-private char[][ ] map;
+	
+protected char[][ ] map;
+
 	static public char[][] board1 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
 			{ 'X', 'H', ' ', ' ', 'I', ' ', 'X', ' ', 'G', 'X' }, { 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
 			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X' }, { 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
@@ -27,6 +29,10 @@ private char[][ ] map;
 public  char[][] getBoard()
 {
 	return map;
+}
+public void setBoard(char[][] map)
+{
+	this.map=map;
 }
 
 }

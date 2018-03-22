@@ -15,7 +15,6 @@ public Character(int x, int y, char letter) {
 		this.letter = letter;
 	}
 
-
 //getters and setters
 
 public int getX() {
@@ -38,14 +37,11 @@ public char getLetter() {
 	return letter;
 }
 
-
 public void setLetter(char letter) {
 	this.letter = letter;
 }
 
-
-
-
+//Methods
 public static boolean checkHeroPresence(char[][] map, Character c) {
     if (map[c.x - 1][c.y] == 'H') {
         return true;

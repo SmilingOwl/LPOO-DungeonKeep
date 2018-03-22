@@ -25,6 +25,7 @@ public Ogre(int x,int y)
 		key =false;
 		timeStun=0;
 	}
+	
 	public int getXdamage()
 	{
 		return xDamage;
@@ -417,5 +418,13 @@ public Ogre(int x,int y)
 		}
 
 		return false;
+	}
+	public void setYdamage(int i) {
+		yDamage=i;
+		
+	}
+	public void setXdamage(int i) {
+		xDamage=i;
+		
 	}
 }
