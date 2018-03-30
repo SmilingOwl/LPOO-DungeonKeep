@@ -3,11 +3,13 @@ package dkeep.gui;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import dkeep.cli.Main;
@@ -16,7 +18,9 @@ import dkeep.logic.Character;
 import dkeep.logic.Game;
 import dkeep.logic.Guard;
 import dkeep.logic.Hero;
+import dkeep.logic.Level1;
 import dkeep.logic.Ogre;
+import dkeep.logic.Game.State;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
@@ -30,78 +34,52 @@ public class GameGui {
 	private Game game;
 	private JTextField textF;
 	private JTextArea textA;
+	private Pictures pic;
+	private JPanel panel ; 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		GameGui window = new GameGui();
 		window.frame.setVisible(true);
 	}
 
-	public GameGui() {
+	public GameGui() throws IOException {
 		starting();
 	}
 
 	public void runButton(char letter)
 	{
-		if(game.getLevel() == 1) {
-
-
-
-
-			game.getHero().heroMovement(game.getB(), String.valueOf(letter));// heroCordinates
-			game.getGuard().whatGuard();
-
-			if (Character.checkHeroPresence(game.getB(), game.getGuard())) {
-				game.setLevel(0);
-				Main.loss();
-				
-			}
-			if(game.getHero().moveLevel2(game.getB(),String.valueOf(letter)))
-			{
-				game.setLevel(2);
-				game.setB(Board.board2);
-			}
-
-
-		}
-		if(game.getLevel() == 2)
+		if((game.gameState != State.Lost) && (game.gameState != State.Won))
 		{
-
-			if (game.getB()[1][8] == ' ' && game.getB()[1][0] == 'I' && game.getB()[game.getHero().getX()][game.getHero().getY()] == 'H') {
-				game.getB()[1][8] = 'k';
-			}
-
-			
-			
-			int coordinates[] = { game.getHero().getX(),  game.getHero().getY() };
-
-			 game.getHero().heroMovementKeyTansport(coordinates, Board.board2,String.valueOf(letter));
-			for (int i = 0; i < game.getOgres().size(); i++) {
-				game.getOgres().get(i).randomOgreDirection();
-
-				if (game.getB()[game.getOgres().get(i).getXdamage()][game.getOgres().get(i).getYdamage()] != 'O') {
-					game.getB()[game.getOgres().get(i).getXdamage()][game.getOgres().get(i).getYdamage()] = ' ';
-				}
-
-				game.getOgres().get(i).radomOgreDamage();
-
-				if (game.getOgres().get(i).checkifstun(game.getHero())) {
-
-				}
-				if (game.getOgres().get(i).checkifloss(game.getHero())) {
-					Main.loss();
-					game.setLevel(0);
-				}
-			}
+		game.heroMove(letter);
+		/*if(game.getLevel()==0)
+		{
+			game=null;
+			label.setText("Play again!");
+		*/
+		}
+		if(game.gameState == State.Lost)
+		{
+			label.setText("Play again!");
+		}
+		if(game.gameState == State.Won)
+		{
+			label.setText("You win!");
 		}
 		game.printstring();
-		textA.setText(game.map);
+		textA.setText(game.getMap());
 	}
-	private void starting() {
+	private void starting() throws IOException {
 		frame = new JFrame();
 
+		
+		pic= new Pictures(frame);
+		panel = new PanelGame(pic);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		panel.setEnabled(true);
 		frame.setBounds(100, 100, 600, 450);
 		frame.getContentPane().setLayout(null);
+		//frame.getContentPane().add(panel);
+		//frame.setVisible(true);
 
 		//-------------------BUTTON--------------------------------
 		// EXIT
@@ -145,10 +123,11 @@ public class GameGui {
 		comboBox.addItem("Suspicious");
 
 		//you can...
-		JLabel lbGame=new JLabel("You can start a new game");
-		lbGame.setBounds(15, 370, 160, 40);
+		label=new JLabel("You can start a new game");
+		label.setBounds(15, 360, 160, 40);
+       
+		frame.getContentPane().add(label);
 
-		frame.getContentPane().add(lbGame);
 		//******************************************
 
 		// NEW GAME
@@ -157,34 +136,34 @@ public class GameGui {
 		buttonNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 
-				int[] heroCoordinates = new int[2];
-				heroCoordinates[0] = 1;
-				heroCoordinates[1] = 1;
+				game=new Game();
+				game.playingLevel=new Level1();
+				game.playingLevel.setGuard(comboBox.getSelectedItem().toString());
+				//game.getGuard().setPersonality(comboBox.getSelectedItem().toString());
 
-				Hero h = new Hero(heroCoordinates[0], heroCoordinates[1], 'H');
-
-				int[] guardCoordinates = new int[2];
-				guardCoordinates[0] = 1;
-				guardCoordinates[1] = 8;
-
-				Guard g = new Guard(guardCoordinates[0], guardCoordinates[1]);
-
-
-				game=new Game(h,g);
-				game.getGuard().setPersonality(comboBox.getSelectedItem().toString());
-
-				if(textF.getText().equals(""))
+				if(Integer.parseInt(textF.getText()) >5 ||Integer.parseInt(textF.getText()) <1)
 					JOptionPane.showMessageDialog(frame, "invalid number!Please insert a positive number!");
 				else
 				{
 					game.setOgres(Integer.parseInt(textF.getText()));
+					game.setNumOgres(Integer.parseInt(textF.getText()));
+					//game.printBoard();
 					
 					game.printstring();
-					textA.setText(game.map);
+					textA.setText(game.getMap());
+				}
+				GameGui2 coiso = null;
+				try {
+					coiso = new GameGui2(game);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 
 
-			//	label.setText("Play!");
+
+				label.setText("Play!");
+				
 			}
 		});
 
