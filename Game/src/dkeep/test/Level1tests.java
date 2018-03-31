@@ -8,6 +8,7 @@ import dkeep.logic.Game;
 import dkeep.logic.Game.Event;
 import dkeep.logic.Game.State;
 import dkeep.logic.Level;
+import dkeep.logic.Level1;
 
 public class Level1tests {
 
@@ -71,13 +72,14 @@ public class Level1tests {
 		Game newGame=new Game();
 		newGame.setPlayingLevel(board);
 		newGame.playingLevel.setLever(true);
-		newGame.setRandomGuard();
+		
 		newGame.updateStateGame( Event.NewGame);
 		
 		assertEquals(1, board.getHero().getXcoordinate());
 		assertEquals(1, board.getHero().getYcoordinate());
 		
 		assertEquals(newGame.gameState, State.Playing);
+		
 		newGame.heroMove('d');
 		assertEquals(newGame.gameState, State.Lost);
 		
@@ -113,6 +115,7 @@ public class Level1tests {
 		Game newGame=new Game();
 		newGame.setPlayingLevel(board);
 		newGame.playingLevel.setLever(true);
+		newGame.playingLevel.setNumberLevel(1);
 		newGame.setRandomGuard();
 		
 		assertEquals(1, board.getHero().getXcoordinate());
@@ -134,6 +137,7 @@ public class Level1tests {
 		Game newGame=new Game();
 		newGame.setPlayingLevel(board);
 		newGame.playingLevel.setLever(true);
+		newGame.playingLevel.setNumberLevel(1);
 		newGame.setRandomGuard();
 		
 		assertEquals(1, board.getHero().getXcoordinate());
@@ -144,6 +148,22 @@ public class Level1tests {
 		newGame.heroMove('a');
 		
 		assertEquals(newGame.gameState, State.Won);
+		
+	}
+	@Test
+	public void testOpenDoorslevel1()
+	{
+		Level board=new Level1();
+		Game newGame=new Game();
+		newGame.setPlayingLevel(board);
+		
+		newGame.playingLevel.openDoors();
+		
+		assertEquals(newGame.playingLevel.getBoard()[5][0],'S');
+		assertEquals(newGame.playingLevel.getBoard()[6][0],'S');
+		
+		newGame.printstring();
+		
 		
 	}
 }

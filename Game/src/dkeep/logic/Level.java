@@ -23,23 +23,58 @@ public class Level {
 	 * class Constructor
 	 */
 	public Level() {
-		
+
 	}
+
 	
-	
+	public Level(char[][] board) {
+
+		boardSize = board.length;
+
+		this.board = new char[boardSize][board[0].length];
+		ogres = new ArrayList<Ogre>();
+
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+
+				if (board[i][j] == 'H' || board[i][j] == 'A') {
+					this.board[i][j] = ' ';
+					hero = new Hero(i, j, board[i][j]);
+				}
+
+				else if (board[i][j] == 'G') {
+					this.board[i][j] = ' ';
+					guard = new Guard(i, j);
+				} else if (board[i][j] == 'O') {
+					this.board[i][j] = ' ';
+					Ogre ogre = new Ogre(i, j);
+					ogres.add(ogre);
+				} else
+					this.board[i][j] = board[i][j];
+			}
+		}
+	}
+
 	// Methods
-	public int getNumberOgres()
-	{
+
+	
+	public int getNumberOgres() {
 		return numOgres;
 	}
-	public void setNumberOgres(int num)
-	{
-		this.numOgres=num;
+
+	public void setNumberLevel(int numberLevel) {
+		this.numberLevel = numberLevel;
 	}
-	public int getNumberLevel()
-	{
+
+
+	public void setNumberOgres(int num) {
+		this.numOgres = num;
+	}
+
+	public int getNumberLevel() {
 		return numberLevel;
 	}
+
 	public char[][] getBoard() {
 		return board;
 	}
@@ -75,18 +110,19 @@ public class Level {
 	}
 
 	public void setOgres(int NumberOgres) {
-		this.numOgres=NumberOgres;
-		/*for (int i = 0; i < NumberOgres; i++) {
-			Ogre ogre = new Ogre(1, 1);
-			ogres.add(ogre);}*/
+		this.numOgres = NumberOgres;
+		/*
+		 * for (int i = 0; i < NumberOgres; i++) { Ogre ogre = new Ogre(1, 1);
+		 * ogres.add(ogre);}
+		 */
 		if (ogres != null) {
-		
+
 			for (int i = 0; i < NumberOgres; i++) {
 				Ogre ogre = new Ogre(1, 1);
 				ogres.add(ogre);
 			}
 		}
-		
+
 	}
 
 	public boolean isLever() {
@@ -96,6 +132,7 @@ public class Level {
 	public void setLever(boolean lever) {
 		this.lever = lever;
 	}
+
 	public boolean checkObstacle(int x, int y, int direction) {
 		if (direction == 2) {
 			if (board[x - 1][y] == 'X' || board[x - 1][y] == 'I' || board[x - 1][y] == 'S') {
@@ -112,14 +149,14 @@ public class Level {
 			}
 		}
 		if (direction == 1) {
-			if (board[x][y - 1] == 'X' || board[x][y - 1] == 'I' || board[x][y- 1] == 'S') {
+			if (board[x][y - 1] == 'X' || board[x][y - 1] == 'I' || board[x][y - 1] == 'S') {
 				return true;
 			} else {
 				return false;
 			}
 		}
 		if (direction == 4) {
-			if (board[x][y+ 1] == 'X' || board[x][y + 1] == 'I' || board[x][y + 1] == 'S') {
+			if (board[x][y + 1] == 'X' || board[x][y + 1] == 'I' || board[x][y + 1] == 'S') {
 				return true;
 			} else {
 				return false;
@@ -128,6 +165,7 @@ public class Level {
 
 		return false;
 	}
+
 	public boolean ogreMovement(int x, int y) {
 		if (board[x][y] == 'X' || board[x][y] == 'I')
 
@@ -135,12 +173,13 @@ public class Level {
 		else
 			return true;
 	}
-public void setRandomOgre() {
-		
+
+	public void setRandomOgre() {
+
 		Random r = new Random();
 		int number = r.nextInt(3);
-		
-		//playingLevel.setOgres(1);
+
+		// playingLevel.setOgres(1);
 		// add 1 ogre
 		if (number == 0)
 			setNumberOgres(1);
@@ -152,13 +191,13 @@ public void setRandomOgre() {
 			setNumberOgres(3);
 
 	}
+
 	public boolean heroMovement(int x, int y) {
-		
-		if (hero.getLetter() == 'K' && board[x][y] == 'I') 
-			{openDoors();
+
+		if (hero.getLetter() == 'K' && board[x][y] == 'I') {
+			openDoors();
 			return false;
-			}
-		else if(board[x][y] == 'X' || board[x][y] == 'I') {
+		} else if (board[x][y] == 'X' || board[x][y] == 'I') {
 			return false;
 		} else
 			return true;
@@ -178,31 +217,28 @@ public void setRandomOgre() {
 	public boolean foundDoor(int x, int y) {
 		if (board[x][y] == 'S')
 			return true;
-		
-		else
-			return false;
-	}
-	public boolean foundClosedDoor(int x, int y) {
-		if (board[x][y] == 'I')
-		{
-			board[x][y] = 'S';
-			return true;
-		}
+
 		else
 			return false;
 	}
 
-	public boolean foundKey(int x, int y) {
-		if (board[x][y] == 'k')
-			{
-			lever=true;
+	public boolean foundClosedDoor(int x, int y) {
+		if (board[x][y] == 'I') {
+			board[x][y] = 'S';
 			return true;
-			}
-		else
+		} else
 			return false;
 	}
-	public void deleteAllKeys()
-	{
+
+	public boolean foundKey(int x, int y) {
+		if (board[x][y] == 'k') {
+			lever = true;
+			return true;
+		} else
+			return false;
+	}
+
+	public void deleteAllKeys() {
 		for (int i = 0; i < boardSize; i++) {
 			for (int j = 0; j < board[0].length; j++) {
 				if (board[i][j] == 'k')

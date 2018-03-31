@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import dkeep.cli.Main;
-import dkeep.logic.Board;
 import dkeep.logic.Character;
 import dkeep.logic.Game;
 import dkeep.logic.Guard;

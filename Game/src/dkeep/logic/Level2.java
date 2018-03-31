@@ -17,7 +17,6 @@ public class Level2 extends Level{
 
 		public Level2() {
 			numberLevel=2;
-		
 			board = board2;
 			boardSize=10;
 			hero = new Hero(8, 1, 'A');
@@ -32,8 +31,7 @@ public class Level2 extends Level{
 			boardSize=10;
 			hero = new Hero(8, 1, 'A');
 			hero.setArmed(true);
-			ogres = new ArrayList<Ogre>();	
-				
+			ogres = new ArrayList<Ogre>();		
 			setOgres(numOgres);
 		}
 		

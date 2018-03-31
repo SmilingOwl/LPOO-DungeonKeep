@@ -14,34 +14,38 @@ public class Game {
 
 	public State gameState;
 	public Level playingLevel;
-	protected String map="";
+	protected String map = "";
 	protected int numO;
-	
-	
-	private boolean levelUp = false;
 
+	private boolean levelUp = false;
 
 	/**
 	 * Class constructor
 	 */
 	public Game() {
 	}
-	public Level getPlayingLevel()
-	{
+
+	public Level getPlayingLevel() {
 		return playingLevel;
 	}
-	public int getNumOgres()
-	{
+
+	public void setPlayingLevel(Level playingLevel) {
+		this.playingLevel = playingLevel;
+
+	}
+
+	public int getNumOgres() {
 		return numO;
 	}
-	public void setNumOgres(int num)
-	{
-		this.numO=num;
+
+	public void setNumOgres(int num) {
+		this.numO = num;
 	}
+
 	/**
 	 * prints the game result (victory or game over)
 	 */
-	
+
 	public void printEndGame() {
 
 		System.out.println();
@@ -50,10 +54,10 @@ public class Game {
 		if (gameState == State.Won) {
 			System.out.print(" Victory ");
 			System.out.println();
-			
+
 		} else if (gameState == State.Lost) {
 			System.out.print(" Game Over ");
-			System.out.println();		
+			System.out.println();
 		}
 	}
 
@@ -70,12 +74,13 @@ public class Game {
 			System.out.println();
 		}
 	}
+
 	public boolean updateMap(int x, int y) {
 
 		// hero
 		if (playingLevel.getHero().getXcoordinate() == x && playingLevel.getHero().getYcoordinate() == y) {
 			map += playingLevel.getHero().getLetter() + " ";
-			//System.out.print(playingLevel.getHero().getLetter() + " ");
+			// System.out.print(playingLevel.getHero().getLetter() + " ");
 			return true;
 		}
 		// Ogre and damage
@@ -86,14 +91,14 @@ public class Game {
 				if (playingLevel.getOgres().get(i).getXcoordinate() == x
 						&& playingLevel.getOgres().get(i).getYcoordinate() == y) {
 					map += playingLevel.getOgres().get(i).getLetter() + " ";
-					//System.out.print(playingLevel.getOgres().get(i).getLetter() + " ");
+					// System.out.print(playingLevel.getOgres().get(i).getLetter() + " ");
 					return true;
 				}
 
 				if (playingLevel.getOgres().get(i).getxDamage() == x
 						&& playingLevel.getOgres().get(i).getyDamage() == y) {
-					map += playingLevel.getOgres().get(i).getDamageSymbol()  + " ";
-					//System.out.print(playingLevel.getOgres().get(i).getDamageSymbol() + " ");
+					map += playingLevel.getOgres().get(i).getDamageSymbol() + " ";
+					// System.out.print(playingLevel.getOgres().get(i).getDamageSymbol() + " ");
 					return true;
 				}
 			}
@@ -102,44 +107,35 @@ public class Game {
 		if (playingLevel.getGuard() != null) {
 
 			if (playingLevel.getGuard().getXcoordinate() == x && playingLevel.getGuard().getYcoordinate() == y) {
-				map += playingLevel.getGuard().getLetter()  + " ";
-				//System.out.print(playingLevel.getGuard().getLetter() + " ");
+				map += playingLevel.getGuard().getLetter() + " ";
+				// System.out.print(playingLevel.getGuard().getLetter() + " ");
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public String getMap()
-	{
+	public String getMap() {
 		return map;
 	}
-	public void printstring()
-	{
-		map="";
+
+	public void printstring() {
+		map = "";
 		for (int i = 0; i < playingLevel.getBoard().length; i++) {
 			for (int j = 0; j < playingLevel.getBoard()[i].length; j++) {
 				if (!updateMap(i, j))
-					map+= playingLevel.getBoard()[i][j]+ " ";
+					map += playingLevel.getBoard()[i][j] + " ";
 			}
-			map+="\n";
+			map += "\n";
 		}
-			System.out.println();
-		/*for(int i=0; i<10;i++)
-		{
-			for(int j=0; j<10; j++)
-			{
-				map+=playingLevel.getBoard()[i][j]+" ";
-			}
-			map+="\n";
-		}*/
-
+		System.out.println();
 	}
 
 	/**
 	 * this function update the game state
 	 * 
-	 * @param e event
+	 * @param e
+	 *            event
 	 */
 	public void updateStateGame(Event e) {
 		if (e == Event.Colision) {
@@ -147,6 +143,7 @@ public class Game {
 		}
 		if (e == Event.levelUp) {
 			levelUp = true;
+			gameState=State.Won;
 			nextlevel();
 		}
 		if (e == Event.NewGame) {
@@ -158,13 +155,11 @@ public class Game {
 	}
 
 	public void nextlevel() {
-		if(playingLevel.numberLevel==1) {
-			playingLevel=new Level2(numO);
+		if (playingLevel.numberLevel == 1) {
+			playingLevel = new Level2(numO);
 			playingLevel.setNumberOgres(numO);
-		}
-		else
+		} else
 			System.out.println("Game completed!");
-		
 
 	}
 
@@ -176,35 +171,29 @@ public class Game {
 	public void setRandomGuard() {
 		Random r = new Random();
 		int type = r.nextInt(3);
-		type=  r.nextInt(3-1) + 1;
+		type = r.nextInt(3 - 1) + 1;
 		playingLevel.setGuard("Drunken");
-		/*if (type == 1)
-			playingLevel.setGuard("Suspicious");
-		if (type == 2)
-			playingLevel.setGuard("Drunken");
-		else
-			playingLevel.setGuard("Rookie");*/
+		/*
+		 * if (type == 1) playingLevel.setGuard("Suspicious"); if (type == 2)
+		 * playingLevel.setGuard("Drunken"); else playingLevel.setGuard("Rookie");
+		 */
 	}
 
 	/**
 	 * this function add randomly 1, 2 or 3 ogres
 	 */
-	/*public void setRandomOgre() {
-		
+
+	public void setRandomOgre() {
+
 		Random r = new Random();
 		int number = r.nextInt(3);
-		//playingLevel.setOgres(1);
-		// add 1 ogre
-		if (number == 0)
-			playingLevel.setNumberOgres(1);
-		// add 2 ogres
-		if (number == 1)
-			playingLevel.setNumberOgres(2);
-		// add 3 ogres
-		else
-			playingLevel.setNumberOgres(3);
+		
+		playingLevel.setOgres(1); // add 1 ogre if (number == 0)
+		playingLevel.setNumberOgres(1); // add 2 ogres if (number == 1)
+		playingLevel.setNumberOgres(2); // add 3 ogres else
+		playingLevel.setNumberOgres(3);
 
-	}*/
+	}
 
 	// set with parameters guard and ogres
 
@@ -247,8 +236,8 @@ public class Game {
 					playingLevel.getHero().getYcoordinate() + 1))
 				playingLevel.getHero().setYcoordinate(playingLevel.getHero().getYcoordinate() + 1);
 		}
-		//update all character
-		
+		// update all character
+
 		updateGuardPosition();
 		updateOgrePosition();
 		updateKeyPosition();
@@ -263,8 +252,8 @@ public class Game {
 
 		int r = random.nextInt(4);
 		do {
-			r= 1 + (int) (Math.random() * 4);
-		} while (playingLevel.checkObstacle(Xcoordinate, Ycoordinate, r) );
+			r = 1 + (int) (Math.random() * 4);
+		} while (playingLevel.checkObstacle(Xcoordinate, Ycoordinate, r));
 		if (r == 3)
 			Xcoordinate++;
 		if (r == 2)
@@ -274,10 +263,9 @@ public class Game {
 		if (r == 1)
 			Ycoordinate--;
 
-		
-			ogre.setXcoordinate(Xcoordinate);
-			ogre.setYcoordinate(Ycoordinate);
-		
+		ogre.setXcoordinate(Xcoordinate);
+		ogre.setYcoordinate(Ycoordinate);
+
 	}
 
 	public void OgreDamageMove(Ogre ogre) {
@@ -286,11 +274,11 @@ public class Game {
 		int Xcoordinate = ogre.getXcoordinate();
 		int Ycoordinate = ogre.getYcoordinate();
 
-		
-		int r=random.nextInt(4) ;
+		int r = random.nextInt(4);
 		do {
-			r= 1 + (int) (Math.random() * 4);;
-		} while (playingLevel.checkObstacle(Xcoordinate, Ycoordinate, r) );
+			r = 1 + (int) (Math.random() * 4);
+			;
+		} while (playingLevel.checkObstacle(Xcoordinate, Ycoordinate, r));
 		if (r == 3)
 			Xcoordinate++;
 		if (r == 2)
@@ -300,15 +288,13 @@ public class Game {
 		if (r == 1)
 			Ycoordinate--;
 
-		
-			ogre.setxDamage(Xcoordinate);
-			ogre.setyDamage(Ycoordinate);
-		
+		ogre.setxDamage(Xcoordinate);
+		ogre.setyDamage(Ycoordinate);
+
 	}
 
-
 	public void updateOgrePosition() {
-		
+
 		if (playingLevel.getOgres() != null) {
 			updateOgreDamagePosition();
 
@@ -364,26 +350,25 @@ public class Game {
 	public void updateKeyPosition() {
 
 		if (playingLevel.foundKey(playingLevel.getHero().getXcoordinate(), playingLevel.getHero().getYcoordinate())) {
-			//has lever
-			if (playingLevel.isLever()) 
-			{
+			// has lever
+			if (playingLevel.isLever()) {
 				playingLevel.getHero().setLetter('K');
 				playingLevel.deleteAllKeys();
-				if(playingLevel.getNumberLevel()==1)
+				if (playingLevel.getNumberLevel() == 1)
+					playingLevel.openDoors();
+			}
+			// has key
+			else
 				playingLevel.openDoors();
-			} 
-			//has key
-			else playingLevel.openDoors();
 		}
 	}
 
 	public void updateDoorPosition() {
 		if (playingLevel.foundDoor(playingLevel.getHero().getXcoordinate(), playingLevel.getHero().getYcoordinate()))
 			updateStateGame(Event.levelUp);
-		
-		if (playingLevel.unlockDoor && playingLevel.getNumberLevel()==1)
+
+		if (playingLevel.unlockDoor && playingLevel.getNumberLevel() == 1)
 			playingLevel.openDoors();
-		
 
 	}
 
@@ -413,14 +398,14 @@ public class Game {
 
 				if (playingLevel.getOgres().get(i).getXcoordinate() == x
 						&& playingLevel.getOgres().get(i).getYcoordinate() == y) {
-					
+
 					System.out.print(playingLevel.getOgres().get(i).getLetter() + " ");
 					return true;
 				}
 
 				if (playingLevel.getOgres().get(i).getxDamage() == x
 						&& playingLevel.getOgres().get(i).getyDamage() == y) {
-					
+
 					System.out.print(playingLevel.getOgres().get(i).getDamageSymbol() + " ");
 					return true;
 				}

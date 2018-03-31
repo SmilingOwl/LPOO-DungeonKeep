@@ -80,20 +80,6 @@ public class Guard extends Character {
 	 * Rookie guard movement (the guard moves normally)
 	 */
 	public void rookieMovement() {
-
-		/*if (guardIndexX >= 23) {
-			guardIndexX = 0;
-			guardIndexY = 0;
-		}
-
-		else {
-			guardIndexX++;
-			guardIndexY++;
-		}
-
-		this.setXcoordinate(guard_x[guardIndexX]);
-		this.setYcoordinate(guard_y[guardIndexY]);*/
-		//Board.board1[x][y] = ' ';
 		switch(array[indice])
 		{
 		case 'l':
@@ -134,16 +120,7 @@ public class Guard extends Character {
 	 * Drunken movement (the guard fall asleep randomly while patrolling)
 	 */
 	public void drunkenMovement() {
-		/*int random_number = getDirection();
 
-		if (sleeping)
-			sleepingMovement(random_number);
-
-		else
-			awakeMovement(random_number);
-
-		this.setXcoordinate(guard_x[guardIndexX]);
-		this.setYcoordinate(guard_y[guardIndexY]);*/
 		Random r1 = new Random();
 		Random r2 = new Random();
 
@@ -270,17 +247,6 @@ public class Guard extends Character {
 
 	}
 
-	/**
-	 * 
-	 * @return a random number between 1 and 4 representing the direction
-	 */
-	public int getDirection() {
-
-		Random rand = new Random();
-		int direction = rand.nextInt(4);
-		return direction;
-
-	}
 
 	/**
 	 * checks if there is collision between the guard and the given coordinates. 
