@@ -5,25 +5,18 @@ import java.util.Random;
 public class Guard extends Character {
 
 	private String personality;
-	private boolean sleeping = false;
-	private int move = 4;
-	private boolean canMove = true;
-
-	private int[] guard_y = { 8, 7, 7, 7, 7, 7, 6, 5, 4, 3, 2, 1, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8, 8, 8 };
-	private int[] guard_x = { 1, 1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 5, 4, 3, 2 };
-	private int guardIndexX;
-	private int guardIndexY;
 	private int array[];
+	private boolean reverse = false;
+	private boolean wasSleeping =false;
+	private int indice;
+	private int goBack =1;
+	
 	private int arraynormal[] = { 'l', 'd','d' ,'d','d','l','l','l','l','l','l','d',
 			'r','r','r','r','r','r','r','u','u','u','u','u'};
 	
 	private int arrayinverso[]= { 'd','d','d','d','d','l','l','l','l','l','l','l',
 			'u','r','r','r','r','r','r','u','u','u','u','r'};
  
-	private boolean reverse = false;
-	private boolean wasSleeping =false;
-	private int indice;
-	private int goBack =1;
 
 	/**
 	 * Class constructor
@@ -102,17 +95,18 @@ public class Guard extends Character {
 		{
 			indice=0;
 		}
-		//Board.board1[x][y] = 'G';
 
 	}
+
+	/**
+	 * Function that converts indices
+	 */
 	public void indice_convert()
 	{
 		if(indice == 0)
 			return;
 					
 		indice = 24 - indice;
-		
-		
 
 	}
 
@@ -130,12 +124,11 @@ public class Guard extends Character {
 			
 		goBack= r2.nextInt(2);
 		wasSleeping=false;
-		}// se 0-> reverse, senão normal
+		}
 
 		if (sleep == 0) {
 			this.setLetter('g');
 			wasSleeping=true;
-			//Board.board1[x][y]='g';
 
 		} else {
 			this.setLetter('G');
@@ -164,63 +157,11 @@ public class Guard extends Character {
 
 	}
 
-	public void sleepingMovement(int number) {
-		if (move <= 0) {
-			sleeping = false;
-			this.setLetter('G');
-			move = 4;
-
-			if (number > 1)
-				canMove = true;
-
-			else
-				canMove = false;
-		} else
-			move--;
-	}
-
-	public void awakeMovement(int number) {
-
-		if (number < 3) {
-			if (canMove) {
-				if (guardIndexX >= 23)
-					guardIndexX = 0;
-				else
-					guardIndexX++;
-			} else {
-				if (guardIndexX <= 0)
-					guardIndexX = 23;
-				else
-					guardIndexX--;
-			}
-		} else {
-			sleeping = true;
-			this.setLetter('g');
-		}
-	}
-
 	/**
 	 * Suspicious movement (the guard randomly reverses patrolling direction)
 	 */
 	public void suspiciousMovement() {
 
-		/*int direction = getDirection();
-
-		if (direction < 3) {
-			if (guardIndexX >= 23)
-				guardIndexX = 0;
-			else
-				guardIndexX++;
-
-		} else {
-			if (guardIndexX > 0) {
-				guardIndexX--;
-			} else {
-				guardIndexX = 23;
-			}
-		}
-		this.setXcoordinate(guard_x[guardIndexX]);
-		this.setYcoordinate(guard_y[guardIndexY]);*/
 		Random r=new Random();
 		int goBack = r.nextInt(2); // se 0-> reverse, senão normal
 
@@ -247,7 +188,6 @@ public class Guard extends Character {
 
 	}
 
-
 	/**
 	 * checks if there is collision between the guard and the given coordinates. 
 	 * @param x x coordinate to check collision
@@ -258,7 +198,7 @@ public class Guard extends Character {
 		
 		if (this.getLetter() == 'G') 
 		{
-			if (y == this.getYcoordinate()) 
+			if (y == this.getYcoordinate() ) 
 			{
 				if (x == this.getXcoordinate() - 1 || x == this.getXcoordinate() + 1 || x == this.getXcoordinate())
 					return true;

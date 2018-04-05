@@ -19,8 +19,8 @@ public class RandomMovement {
 		Game newGame = new Game();
 		newGame.setPlayingLevel(board);
 		newGame.setRandomOgre();
-		newGame.updateStateGame( Event.NewGame);
-		newGame.updateStateGame( Event.levelUp);
+		newGame.updateStateGame(Event.NewGame);
+		newGame.updateStateGame(Event.levelUp);
 
 		boolean upMoveAndUpDamage = false;
 		boolean upMoveAndDownDamage = false;
@@ -47,7 +47,7 @@ public class RandomMovement {
 				|| !leftMoveAndUpDamage || !leftMoveAndDownDamage || !leftMoveAndLeftDamage || !leftMoveAndRightDamage
 				|| !rightMoveAndUpDamage || !rightMoveAndDownDamage || !rightMoveAndLeftDamage
 				|| !rightMoveAndRightDamage) {
-		
+
 			int oldX = newGame.playingLevel.getOgres().get(0).getXcoordinate();
 			int oldY = newGame.playingLevel.getOgres().get(0).getYcoordinate();
 

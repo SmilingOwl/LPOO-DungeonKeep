@@ -25,50 +25,81 @@ public class Ogre extends Character {
 	}
 
 	// Getters and Setters
-public boolean getIsStun()
-{
-	return isStun;
-}
+	/**
+	 * 
+	 * return x damage coordinate
+	 */
 	public int getxDamage() {
 		return xDamage;
 	}
 
+	/**
+	 * 
+	 * Sets the x damage coordinate
+	 */
 	public void setxDamage(int xDamage) {
 		this.xDamage = xDamage;
 	}
 
+	/**
+	 * 
+	 * return y damage coordinate
+	 */
 	public int getyDamage() {
 		return yDamage;
 	}
 
+	/**
+	 * 
+	 * Sets the y damage coordinate
+	 */
 	public void setyDamage(int yDamage) {
 		this.yDamage = yDamage;
 	}
 
+	/**
+	 * 
+	 * return the damage symbol
+	 */
 	public char getDamageSymbol() {
 		return damageSymbol;
 	}
 
+	/**
+	 * Sets the damage symbol
+	 * @param damageSymbol
+	 */
 	public void setDamageSymbol(char damageSymbol) {
 		this.damageSymbol = damageSymbol;
 	}
 
+	/**
+	 * 
+	 * return if ogre is stun or not
+	 */
 	public boolean isStun() {
 		return isStun;
 	}
 
+	/**
+	 * 
+	 * Sets the isStun variable
+	 */
 	public void setStun(boolean isStun) {
 		this.isStun = isStun;
 	}
 
 	// Methods
 
-/**
- * Function that checks if the position passed can stun the ogre
- * @param x x coordinate of the position (character)
- * @param y y coordinate of the position (character)
- * @return true if it큦 stun, false otherwise
- */
+	/**
+	 * Function that checks if the position passed can stun the ogre
+	 * 
+	 * @param x
+	 *            x coordinate of the position (character)
+	 * @param y
+	 *            y coordinate of the position (character)
+	 * @return true if it큦 stun, false otherwise
+	 */
 	public boolean ogreIsStuned(int x, int y) {
 		// same line as *
 		if (y == this.y) {
@@ -83,12 +114,17 @@ public boolean getIsStun()
 
 		return false;
 	}
-/**
- * checks if there is a collision between the ogre큦 damage*' and the character of coordinates x,y
- * @param x  x coordinate to check collision
- * @param y y coordinate to check collision
- * @return true if there is a collision, false otherwise
- */
+
+	/**
+	 * checks if there is a collision between the ogre큦 damage * and the character
+	 * of coordinates x,y
+	 * 
+	 * @param x
+	 *            x coordinate to check collision
+	 * @param y
+	 *            y coordinate to check collision
+	 * @return true if there is a collision, false otherwise
+	 */
 	public boolean ogreColision(int x, int y) {
 		// same line as *
 		if (y == this.yDamage) {

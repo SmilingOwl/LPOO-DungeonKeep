@@ -14,6 +14,9 @@ public class Level1 extends Level{
 				{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
 				{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' } };
 
+		/**
+		 * Class constructor
+		 */
 		public Level1() {
 			boardSize=10;
 			board = board1;
@@ -22,6 +25,9 @@ public class Level1 extends Level{
 			numberLevel=1;
 		}
 
+		/**
+		 * Function that opens the doors in level 1
+		 */
 		@Override
 		public void openDoors() {
 			board[5][0]='S';

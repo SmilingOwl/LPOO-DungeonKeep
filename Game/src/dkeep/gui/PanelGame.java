@@ -1,6 +1,8 @@
 package dkeep.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +14,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import dkeep.logic.Game.State;
@@ -22,135 +26,123 @@ public class PanelGame  extends JPanel implements KeyListener{
 	private JButton buttonLeft;
 	private JButton buttonRight; 
 	private Pictures pics;
-	
-	
-	
-	public PanelGame(Pictures pics) throws IOException
-	 {
+	private PanelControler panelC;
+
+
+
+	public PanelGame(Pictures pics, PanelControler panelC) throws IOException
+	{
 		this.pics=pics;
-		setPreferredSize(new Dimension(400,400));
-	//	hero= ImageIO.read(new File(images.class.getResource("/Images/hero.png").getFile()));
-		 inicializeButtons();
-		 requestFocusInWindow();
-		 addKeyListener(this);
-		 setFocusable(true);
-		 setLayout(null);
-	 }
-	
-	public void inicializeButtons() {
-		/*buttonLeft();
-		buttonUp();
-		buttonRight();
-		buttonDown();*/
-	}
-	private void runButton(char c) {
+		this.panelC=panelC;
+		//setVisible(true);
+		//setEnabled(true);
+
+		//setEnabled(true);		
+		setPreferredSize(new Dimension(600,600));
+		//setVisible(true);	
+		//	hero= ImageIO.read(new File(images.class.getResource("/Images/hero.png").getFile()));
+
+		//setPreferredSize(new Dimension(700,800));
+		//setBounds(0, 0, 10*60 + 20, 10*60+50);
+		setBounds(15, 15, 700, 700);
+
+		requestFocusInWindow();
+		addKeyListener(this);
+		setFocusable(true);
+		setLayout(null);
 		
+
+	}
+
+
+	private void runButton(char c) {
+
 		if((pics.getGame().gameState != State.Lost) && (pics.getGame().gameState != State.Won))
 		{
-		pics.updateMove(c);
-		/*if(game.getLevel()==0)
+			pics.updateMove(c);
+			if(pics.getGame().gameState == State.Lost)
+			{
+				JLabel Label=new JLabel("You Lost!!");
+				Label.setBounds(200, 50, 500, 400);
+				Label.setFont(new Font("Serif", Font.PLAIN, 100));
+				Label.setForeground (Color.CYAN);
+
+				add(Label); 
+			}else if(pics.getGame().gameState == State.Won)
+			{
+				JLabel Label=new JLabel("You won!!");
+				Label.setBounds(200, 50, 500, 400);
+				Label.setFont(new Font("Serif", Font.PLAIN, 100));
+				Label.setForeground (Color.CYAN);
+
+				add(Label);
+			}
+			repaint();
+			/*if(game.getLevel()==0)
 		{
 			game=null;
 			label.setText("Play again!");
-		*/
+			 */
+			//}
+			//pics.updateMove(c);
+
+			// TODO Auto-generated method stub
+
 		}
-		//pics.updateMove(c);
-		repaint();
-				// TODO Auto-generated method stub
-				
-			}
-	/*public void buttonUp()
-	{
-		this.buttonUp = new JButton("Up");
-
-		buttonUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				runButton('w');
-				
-			}
-
-			
-		});
-		buttonUp.setBounds(410, 200, 68, 20);
-		add(buttonUp);
 	}
-	public void buttonDown()
-	{
-		this.buttonUp = new JButton("Up");
 
-		buttonUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				runButton('w');
-			}
-		});
-	}
-	public void buttonLeft()
-	{
-		this.buttonUp = new JButton("Up");
 
-		buttonUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				runButton('w');
-			}
-		});
-	}
-	public void buttonRight()
-	{
-		this.buttonUp = new JButton("Up");
-
-		buttonUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				runButton('w');
-			}
-		});
-	}*/
-	
 	@Override
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		
+
 		try {			
-			pics.loadImages();
+			pics.loadImages(); 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		for (int i=0; i < pics.getCurrentMapDimensions();i++)
-		{
-			for (int j=0; j < pics.getCurrentMapDimensions();j++)
+		if(panelC.getState()== panelC.getState().gamePanel  ) {
+			for (int i=0; i < pics.getCurrentMapDimensions();i++)
 			{
-				if(pics.getCurrentMap()[i][j]== 'X')
+				for (int j=0; j < pics.getCurrentMapDimensions();j++)
 				{
-					g.drawImage(pics.getWall(), j *60,i*60,60,60,this);
-				}
-				else if(pics.getCurrentMap()[i][j]== 'S')
-				{  
-					g.drawImage(pics.getOpenDoor(), j *60,i*60,60,65,this);
-					
-				}
-				else if(pics.getCurrentMap()[i][j]== 'k')
-				{
-					g.drawImage(pics.getGround(), j*60, i*60, 60 , 60 ,this);
-					g.drawImage(pics.getKey(), j *60,i*60,60,60,this);
-				}
-				else if(pics.getCurrentMap()[i][j]== 'I')
-				{
-					g.drawImage(pics.getCloseDoor(), j *60,i*60,60,60,this);
-					
-				}
-				else {
-					g.drawImage(pics.getGround(), j*60, i*60, 60 , 60 ,this);
+					if(pics.getCurrentMap()[i][j]== 'X') 
+					{
+						g.drawImage(pics.getWall(), j *100,i*100,100,100,this);
+					}
+					else if(pics.getCurrentMap()[i][j]== 'S')
+					{  g.drawImage(pics.getGround(), j*100, i*100, 100 , 100 ,this);
+						g.drawImage(pics.getOpenDoor(), j *100,i*100,100,105,this);
+
+					}
+					else if(pics.getCurrentMap()[i][j]== 'k')
+					{
+						g.drawImage(pics.getGround(), j*100, i*100, 100 , 100 ,this);
+						g.drawImage(pics.getKey(), j *100,i*100,100,100,this);
+					}
+					else if(pics.getCurrentMap()[i][j]== 'I')
+					{
+						g.drawImage(pics.getGround(), j*100, i*100, 100 , 100 ,this);
+						g.drawImage(pics.getCloseDoor(), j *100,i*100,100,100,this);
+
+					}else if(pics.getCurrentMap()[i][j]== 's')
+					{
+
+
+					}else {
+						g.drawImage(pics.getGround(), j*100, i*100, 100 , 100 ,this);
+					}
 				}
 			}
+			paintCharacters(g);
 		}
-		paintCharacters(g);
-	
-	
+
 	}
 	public void paintCharacters(Graphics g)
 	{
+		requestFocusInWindow();
 		paintGuard(g);
 		paintHero(g);
 		paintOgre(g);
@@ -162,14 +154,14 @@ public class PanelGame  extends JPanel implements KeyListener{
 		{
 			for(int i=0; i < pics.getGame().getPlayingLevel().getOgres().size();i++)
 			{
-				if(pics.getGame().getPlayingLevel().getOgres().get(i).getIsStun())
+				if(pics.getGame().getPlayingLevel().getOgres().get(i).isStun())
 				{
-					g.drawImage(pics.getOgreStun(),pics.getGame().getPlayingLevel().getOgres().get(i).getYcoordinate() *60,pics.getGame().getPlayingLevel().getOgres().get(i).getXcoordinate() *60,60,60,this);
+					g.drawImage(pics.getOgreStun(),pics.getGame().getPlayingLevel().getOgres().get(i).getYcoordinate() *100,pics.getGame().getPlayingLevel().getOgres().get(i).getXcoordinate() *100,100,100,this);
 				}else {
-					g.drawImage(pics.getOgre(),pics.getGame().getPlayingLevel().getOgres().get(i).getYcoordinate() *60,pics.getGame().getPlayingLevel().getOgres().get(i).getXcoordinate() *60,60,60,this);
+					g.drawImage(pics.getOgre(),pics.getGame().getPlayingLevel().getOgres().get(i).getYcoordinate() *100,pics.getGame().getPlayingLevel().getOgres().get(i).getXcoordinate() *100,100,100,this);
 				}
-				}
-		}
+			}
+		} 
 	}
 	public void paintOgreDamage(Graphics g)
 	{
@@ -177,7 +169,7 @@ public class PanelGame  extends JPanel implements KeyListener{
 		{
 			for(int i=0; i < pics.getGame().getPlayingLevel().getOgres().size();i++)
 			{
-				g.drawImage(pics.getOgreMartelo(),pics.getGame().getPlayingLevel().getOgres().get(i).getyDamage()*60,pics.getGame().getPlayingLevel().getOgres().get(i).getxDamage()*60,60,60,this);
+				g.drawImage(pics.getOgreMartelo(),pics.getGame().getPlayingLevel().getOgres().get(i).getyDamage()*100,pics.getGame().getPlayingLevel().getOgres().get(i).getxDamage()*100,100,100,this);
 			}
 		}
 	}
@@ -185,23 +177,23 @@ public class PanelGame  extends JPanel implements KeyListener{
 	{
 		if(pics.getGame().getPlayingLevel().getNumberLevel()== 1 && pics.getGame().getPlayingLevel().getGuard().getLetter() != 'g')
 		{
-			g.drawImage(pics.getGuard(),pics.getGame().getPlayingLevel().getGuard().getYcoordinate()*60,pics.getGame().getPlayingLevel().getGuard().getXcoordinate()*60,60,60,this);
+			g.drawImage(pics.getGuard(),pics.getGame().getPlayingLevel().getGuard().getYcoordinate()*100,pics.getGame().getPlayingLevel().getGuard().getXcoordinate()*100,100,100,this);
 		}
 		else if( pics.getGame().getPlayingLevel().getNumberLevel()== 1)
 		{
-			g.drawImage(pics.getGuardSleeping(),pics.getGame().getPlayingLevel().getGuard().getYcoordinate()*60,pics.getGame().getPlayingLevel().getGuard().getXcoordinate()*60,60,60,this);
+			g.drawImage(pics.getGuardSleeping(),pics.getGame().getPlayingLevel().getGuard().getYcoordinate()*100,pics.getGame().getPlayingLevel().getGuard().getXcoordinate()*100,100,100,this);
 		}
-			
+
 	}
 	public void paintHero(Graphics g)
 	{
 		if(pics.getGame().getPlayingLevel().getNumberLevel()== 1 )
 		{
-			g.drawImage(pics.getHero(),pics.getGame().getPlayingLevel().getHero().getYcoordinate()*60,pics.getGame().getPlayingLevel().getHero().getXcoordinate()*60,60,60,this);
+			g.drawImage(pics.getHero(),pics.getGame().getPlayingLevel().getHero().getYcoordinate()*100,pics.getGame().getPlayingLevel().getHero().getXcoordinate()*100,100,100,this);
 		}
 		else if(pics.getGame().getPlayingLevel().getNumberLevel()== 2 )
 		{
-			g.drawImage(pics.getHeroArmed(),pics.getGame().getPlayingLevel().getHero().getYcoordinate()*60,pics.getGame().getPlayingLevel().getHero().getXcoordinate()*60,60,60,this);
+			g.drawImage(pics.getHeroArmed(),pics.getGame().getPlayingLevel().getHero().getYcoordinate()*100,pics.getGame().getPlayingLevel().getHero().getXcoordinate()*100,100,100,this);
 		}
 	}
 	@Override
@@ -232,5 +224,5 @@ public class PanelGame  extends JPanel implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
-	
+
 }
