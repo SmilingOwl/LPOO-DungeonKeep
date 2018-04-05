@@ -2,3 +2,5 @@
 LPOO projects
 
 ![Coverage](eclema.PNG)
+
+![PIT](PIT.PNG)
