@@ -148,7 +148,7 @@ add(dd);
 
 				if(Integer.parseInt(textF.getText()) >5 ||Integer.parseInt(textF.getText()) <1 ) {
 					//JOptionPane.showMessageDialog(frame, "invalid number!Please insert a positive number!");
-					JOptionPane.showInputDialog(this, "invalid number!Please insert a positive number!");
+					JOptionPane.showMessageDialog(dd, "invalid number!Please insert a positive number!");
 				}else
 				{
 					/*Game game=new Game();
