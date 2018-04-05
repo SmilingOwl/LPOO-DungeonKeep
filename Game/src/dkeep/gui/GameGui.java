@@ -63,42 +63,16 @@ public class GameGui {
 		starting();
 	}
 
-	/*public void runButton(char letter)
-	{
-		if((game.gameState != State.Lost) && (game.gameState != State.Won))
-		{
-		game.heroMove(letter);
-		/*if(game.getLevel()==0)
-		{
-			game=null;
-			label.setText("Play again!");
-		*/
-		/*}
-		if(game.gameState == State.Lost)
-		{
-			label.setText("Play again!");
-		}
-		if(game.gameState == State.Won)
-		{
-			label.setText("You win!");
-		}
-		game.printstring();
-		textA.setText(game.getMap());
-	}*/
 	private void starting() throws IOException {
 		frame = new JFrame();
-		//frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-       // frame.setBounds(100, 100, 700, 750);
 		frame.getContentPane().setLayout(null);
-		// não percebi muito bem o que isto faz xD
-			 layeredPane = new JLayeredPane();
+		 layeredPane = new JLayeredPane();
 		 layeredPane.setBounds(0, 0, 1070, 1070);
 		 frame.getContentPane().add(layeredPane);
 		 layeredPane.setLayout(null);
 		 
 		 
 			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			//panel.setEnabled(true);
 			frame.setBounds(0, 0, 1000, 1000);
 			frame.getContentPane().setLayout(null);
 		pic= new Pictures(frame);
@@ -117,19 +91,15 @@ public class GameGui {
 		
 		panelEdit = new PanelEdit(pic, panelC);
 		panelEdit.setBounds(0,0,1070,1070);
-		//frame.getContentPane().add(panelEdit);
 		layeredPane.add(panelEdit);
 	
 	
-	    //frame.getContentPane().add(panelMenu);
+	  
 		frame.getContentPane().add(panel); 
 		panel.setBounds(0,0,1070,1070);
-		//frame.getContentPane().add(panelEdit);
+	
 	   	panelC.setPanels(panelMenu, panel,panelEdit);
-		//frame.getContentPane().add(panel);
-		//frame.setVisible(true);
-
-		//-------------------BUTTON--------------------------------
+		
 		
 }
 }

@@ -453,14 +453,12 @@ public class PanelEdit extends JPanel{
 
 		panelBoard = new JPanel();
 		panelBoard.setBounds(51, 108, 296, 250);
-		//add(panelBoard);
-
-
+		
 	}
 	ChangeListener listener = new ChangeListener() {
 		@Override
 		public void stateChanged(ChangeEvent e) {
-			// TODO Auto-generated method stub
+			
 			setDimentionsBoard((Integer) spinner.getValue() ,(Integer)spinner_1.getValue());
 
 			repaint();
@@ -554,7 +552,7 @@ public class PanelEdit extends JPanel{
 		try {			
 			pics.loadImages(); 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		if(panelC.getState()== panelC.getState().editPanel ) {

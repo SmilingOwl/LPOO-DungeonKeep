@@ -11,7 +11,7 @@ public class PanelControler {
 	};
 	public enum Event{
 		newGame, setting,endsetting
-	}
+	} 
 	public PanelControler() {
 		state = State.mainPanel;
 	}
