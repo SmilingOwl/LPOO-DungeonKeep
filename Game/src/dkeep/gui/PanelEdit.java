@@ -38,6 +38,8 @@ public class PanelEdit extends JPanel{
 	private JTextField yPos;
 	private PanelControler panelC;
 	private JDialog settings;
+	
+		
 	public PanelEdit(Pictures pics, PanelControler panelC)
 	{
 		this.pics=pics;
@@ -72,11 +74,7 @@ public class PanelEdit extends JPanel{
 		init();
 		buttonReturn();
 		buttonAdd();
-		//buttonSetting();
 		buttonExit();
-
-
-
 	}
 
 	private void init()
