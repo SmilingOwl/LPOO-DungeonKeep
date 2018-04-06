@@ -16,10 +16,10 @@ public class Game {
 	public boolean modify;
 	public Level playingLevel;
 	protected String map = "";
-	protected char[][] map2;
-	private int xHero = 0;
-	private int yHero = 0;
-	private int[] coorO;
+	protected char[][] map3;
+	private int xHeroo = 0;
+	private int yHeroo = 0;
+	private int[] coorOO;
 	protected int numO = 0;
 
 	private boolean levelUp = false;
@@ -41,66 +41,66 @@ public class Game {
 
 	/**
 	 * 
-	 * return the coorO
+	 * return the coorOO
 	 */
-	public int[] getCoorO() {
-		return coorO;
+	public int[] getCoorOO() {
+		return coorOO;
 	}
 
 	/**
 	 * 
-	 * sets the coorO attribute
+	 * sets the coorOO attribute
 	 */
-	public void setCoorO(int[] cooro) {
-		coorO = cooro;
+	public void setCoorOO(int[] cooro) {
+		coorOO = cooro;
 	}
 
 	/**
 	 * 
 	 * return the hero x coordinate
 	 */
-	public int getXHero() {
-		return xHero;
+	public int getXHeroo() {
+		return xHeroo;
 	}
 
 	/**
 	 * 
 	 * return the hero y coordinate
 	 */
-	public int getYHero() {
-		return yHero;
+	public int getYHeroo() {
+		return yHeroo;
 	}
 
 	/**
 	 * 
 	 * sets the hero x coordinate
 	 */
-	public void setXHero(int x) {
-		xHero = x;
+	public void setXHeroo(int x) {
+		xHeroo = x;
 	}
 
 	/**
 	 * 
 	 * sets the hero y coordinate
 	 */
-	public void setYHero(int y) {
-		yHero = y;
+	public void setYHeroo(int y) {
+		yHeroo = y;
 	}
 
 	/**
 	 * 
-	 * return the map2 attribute
+	 * return the map3 attribute
 	 */
-	public char[][] getMap2() {
-		return map2;
+	public char[][] getMap3() {
+		return map3;
 	}
 
 	/**
 	 * 
-	 * sets the map2 attribute
+	 * sets the map3 attribute
 	 */
-	public void setMap2(char[][] map) {
-		this.map2 = map;
+	public void setMap3(char[][] map) {
+		this.map3 = map;
 	}
 
 	/**
@@ -191,12 +191,12 @@ public class Game {
 	 */
 	public void nextlevel() {
 		if (playingLevel.numberLevel == 1) {
-			playingLevel = new Level2(numO, xHero, yHero, coorO);
-			playingLevel.setXHero(xHero);
-			playingLevel.setYHero(yHero);
+			playingLevel = new Level2(numO, xHeroo, yHeroo, coorOO);
+			playingLevel.setXHero(xHeroo);
+			playingLevel.setYHero(yHeroo);
 			if (numO == 0) setRandomOgre();
 			else playingLevel.setNumberOgres(numO);
-			if (modify)this.playingLevel.setMap2(map2);
+			if (modify)this.playingLevel.setMap2(map3);
 			}}
 
 	// set randomly guard and ogres!

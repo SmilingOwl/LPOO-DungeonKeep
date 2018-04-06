@@ -222,7 +222,7 @@ public class PanelEdit extends JPanel {
 			else if (x == 7) newBoard = newBoard87;
 			else if (x == 8) newBoard = newBoard88;
 		}
-		pics.getGame().setMap2(newBoard);
+		pics.getGame().setMap3(newBoard);
 	}
 
 	private void setBoard2Characters() {
@@ -240,15 +240,10 @@ public class PanelEdit extends JPanel {
 						coorO[numO] = i;
 						numO++;
 						coorO[numO] = j;
-						numO++;
-					}
-
-				}
-			}
-		}
-		pics.getGame().setCoorO(coorO);
-		pics.getGame().setXHero(xHero);
-		pics.getGame().setYHero(yHero);
+						numO++;}}}}
+		pics.getGame().setCoorOO(coorO);
+		pics.getGame().setXHeroo(xHero);
+		pics.getGame().setYHeroo(yHero);
 	}
 
 	private void buttonAdd() {
