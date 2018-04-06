@@ -4,7 +4,7 @@ LPOO projects
 ![Coverage](eclema.PNG)
 
 ![PIT](PIT.PNG)
-[![BCH compliance](https://bettercodehub.com/edge/badge/BCH-FEUP-OOPLab/LPOO1617_T1G8?branch=master&token=b35cc56a12121a3036ca0e0c05c76cdb262a378b)](https://bettercodehub.com/)
+[![BCH compliance](https://bettercodehub.com/edge/badge/SmilingOwl/LPOO1718_T5G8?branch=master&token=f5bbf7999008c2182ec91c7106ed4ae001b6a899)](https://bettercodehub.com/)
 
 Catarina de Almeida Figueiredo  up201606334@fe.up.pt
 
