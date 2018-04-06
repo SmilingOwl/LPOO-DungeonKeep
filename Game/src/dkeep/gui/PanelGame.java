@@ -33,17 +33,9 @@ public class PanelGame  extends JPanel implements KeyListener{
 	public PanelGame(Pictures pics, PanelControler panelC) throws IOException
 	{
 		this.pics=pics;
-		this.panelC=panelC;
-		//setVisible(true);
-		//setEnabled(true);
-
-		//setEnabled(true);		
+		this.panelC=panelC;	
 		setPreferredSize(new Dimension(600,600));
-		//setVisible(true);	
-		//	hero= ImageIO.read(new File(images.class.getResource("/Images/hero.png").getFile()));
-
-		//setPreferredSize(new Dimension(700,800));
-		//setBounds(0, 0, 10*60 + 20, 10*60+50);
+	
 		setBounds(15, 15, 700, 700);
 
 		requestFocusInWindow();
@@ -78,15 +70,6 @@ public class PanelGame  extends JPanel implements KeyListener{
 				add(Label);
 			}
 			repaint();
-			/*if(game.getLevel()==0)
-		{
-			game=null;
-			label.setText("Play again!");
-			 */
-			//}
-			//pics.updateMove(c);
-
-			// TODO Auto-generated method stub
 
 		}
 	}
@@ -100,7 +83,6 @@ public class PanelGame  extends JPanel implements KeyListener{
 		try {			
 			pics.loadImages(); 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(panelC.getState()== panelC.getState().gamePanel  ) {

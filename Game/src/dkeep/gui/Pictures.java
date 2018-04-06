@@ -54,10 +54,6 @@ public class Pictures {
 		this.width= frame.getWidth();
 		this.height= frame.getHeight();
 		
-		//loadGame();
-		//game.playingLevel= new Level1();
-		
-		
 	}
 	
 	public void updateMove( char letter)
@@ -117,8 +113,6 @@ public class Pictures {
 
 
 		game=new Game();
-		
-		//game.getGuard().setGuard(guardType);
 		game.setOgres(ogreNum);
 	
 	}
@@ -183,19 +177,16 @@ public class Pictures {
 
 	public void setWidth(int i) {
 		width=i;
-		// TODO Auto-generated method stub
 		
 	}
 
 	public void setHeight(int i) {
 		height=i;
-		// TODO Auto-generated method stub
-		
+	
 	}
 
 	public JFrame getFrame() {
-		// TODO Auto-generated method stub
-		
+	
 		return frame;
 	}
 	public void setFrame(int dimension)

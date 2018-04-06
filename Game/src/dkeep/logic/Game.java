@@ -200,12 +200,7 @@ public class Game {
 	 */
 	public void nextlevel() {
 		if (playingLevel.numberLevel == 1) {
-			// playingLevel = new Level2(numO);
 			playingLevel = new Level2(numO, xHero, yHero, coorO);
-
-			/*
-			 * if(coorO !=null) playingLevel.setCoorO(coorO);
-			 */
 			playingLevel.setXHero(xHero);
 			playingLevel.setYHero(yHero);
 			if (numO == 0) {

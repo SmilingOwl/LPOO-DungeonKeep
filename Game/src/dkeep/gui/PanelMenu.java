@@ -37,8 +37,6 @@ public class PanelMenu extends JPanel{
 		dd.setBounds(500,500,0,0);
 
 		pics.setGame(game);
-		//setPreferredSize(new Dimension(400,400));
-		//setBounds(100, 100, 10*60 + 20, 10*60+50);
 		setVisible(true);
 		setEnabled(true);
 add(dd);
@@ -176,11 +174,9 @@ add(dd);
 		try {			
 			pics.loadImages(); 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-	//	g.drawImage(pics.getMainMenu(), 0,0,569,455,this);
 		g.drawImage(pics.getMainMenu(), 0,0,1000,1000,this);
 		
 	}
