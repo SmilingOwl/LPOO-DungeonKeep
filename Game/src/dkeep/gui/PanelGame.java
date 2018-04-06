@@ -32,17 +32,15 @@ public class PanelGame  extends JPanel implements KeyListener{
 
 	public PanelGame(Pictures pics, PanelControler panelC) throws IOException
 	{
-		this.pics=pics;
-		this.panelC=panelC;	
+		this.pics=pics; 
+		this.panelC=panelC;
 		setPreferredSize(new Dimension(600,600));
-	
 		setBounds(15, 15, 700, 700);
-
 		requestFocusInWindow();
 		addKeyListener(this);
 		setFocusable(true);
 		setLayout(null);
-		
+
 
 	}
 
@@ -58,7 +56,6 @@ public class PanelGame  extends JPanel implements KeyListener{
 				Label.setBounds(200, 50, 500, 400);
 				Label.setFont(new Font("Serif", Font.PLAIN, 100));
 				Label.setForeground (Color.CYAN);
-
 				add(Label); 
 			}else if(pics.getGame().gameState == State.Won)
 			{
@@ -96,7 +93,7 @@ public class PanelGame  extends JPanel implements KeyListener{
 					}
 					else if(pics.getCurrentMap()[i][j]== 'S')
 					{  g.drawImage(pics.getGround(), j*100, i*100, 100 , 100 ,this);
-						g.drawImage(pics.getOpenDoor(), j *100,i*100,100,105,this);
+					g.drawImage(pics.getOpenDoor(), j *100,i*100,100,105,this);
 
 					}
 					else if(pics.getCurrentMap()[i][j]== 'k')

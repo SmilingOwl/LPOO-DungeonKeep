@@ -39,11 +39,8 @@ public class PanelMenu extends JPanel{
 		pics.setGame(game);
 		setVisible(true);
 		setEnabled(true);
-add(dd);
-
-	
+		add(dd);
 		requestFocusInWindow();
-
 		setFocusable(true);
 		setLayout(null);
 		inicializeButtons();
@@ -60,7 +57,6 @@ add(dd);
 	private void init()
 	{
 
-		//number of ogres
 		JLabel lbNumOgres=new JLabel("Number of Ogres");
 		lbNumOgres.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lbNumOgres.setBounds(15, 17, 145, 33);
@@ -72,8 +68,6 @@ add(dd);
 		textF.setColumns(10);
 		add(textF);
 		textF.setText( "0" );
-
-
 
 		//guard personality
 		JLabel lbGuard=new JLabel("Guard personality");
@@ -91,7 +85,7 @@ add(dd);
 		comboBox.addItem("Drunken");
 		comboBox.addItem("Suspicious");
 
-	
+
 
 
 	}
@@ -119,23 +113,16 @@ add(dd);
 			public void actionPerformed(ActionEvent action)
 			{
 				if(Integer.parseInt(textF.getText()) >5 ||Integer.parseInt(textF.getText()) <1 ) {
-					//JOptionPane.showMessageDialog(frame, "invalid number!Please insert a positive number!");
-					//JOptionPane.showInputDialog(this, "invalid number!Please insert a positive number!");
 					JOptionPane.showMessageDialog(dd, "invalid number!Please insert a positive number!");
 				}else {
-				pics.setOgreNum(Integer.parseInt(textF.getText()));
-				pics.getGame().setNumOgres(Integer.parseInt(textF.getText()));
-				pics.getGame().playingLevel.setGuard(comboBox.getSelectedItem().toString());
-				panelC.choosePanel(Event.setting);}
-
-				//settings.setVisible(true);
+					pics.setOgreNum(Integer.parseInt(textF.getText()));
+					pics.getGame().setNumOgres(Integer.parseInt(textF.getText()));
+					pics.getGame().playingLevel.setGuard(comboBox.getSelectedItem().toString());
+					panelC.choosePanel(Event.setting);}
 			}
 		});
-
 		buttonSettings.setBounds(655, 30, 200, 50);
 		add(buttonSettings);
-
-
 	}
 	private void buttonNewGame() {
 		JButton buttonNewGame = new JButton("New Game");
@@ -145,16 +132,10 @@ add(dd);
 			public void actionPerformed(ActionEvent a) {
 
 				if(Integer.parseInt(textF.getText()) >5 ||Integer.parseInt(textF.getText()) <1 ) {
-					//JOptionPane.showMessageDialog(frame, "invalid number!Please insert a positive number!");
 					JOptionPane.showMessageDialog(dd, "invalid number!Please insert a positive number!");
 				}else
 				{
-					/*Game game=new Game();
-					game.playingLevel=new Level1(); 
-					
-*/
-					//pics.setGame(game);
-					 pics.getGame().playingLevel.setGuard(comboBox.getSelectedItem().toString());
+					pics.getGame().playingLevel.setGuard(comboBox.getSelectedItem().toString());
 					pics.getGame().setNumOgres(Integer.parseInt(textF.getText()));
 					panelC.choosePanel(Event.newGame);
 
@@ -176,8 +157,7 @@ add(dd);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		g.drawImage(pics.getMainMenu(), 0,0,1000,1000,this);
-		
+
 	}
 }

@@ -114,22 +114,17 @@ public class Guard extends Character {
 	 * Drunken movement (the guard fall asleep randomly while patrolling)
 	 */
 	public void drunkenMovement() {
-
 		Random r1 = new Random();
 		Random r2 = new Random();
 
 		int sleep = r1.nextInt(4);// se 0->dormir, senão move
 		if(wasSleeping==true)
-		{
-			
-		goBack= r2.nextInt(2);
-		wasSleeping=false;
-		}
+		{goBack= r2.nextInt(2);
+		wasSleeping=false;}
 
 		if (sleep == 0) {
 			this.setLetter('g');
 			wasSleeping=true;
-
 		} else {
 			this.setLetter('G');
 
@@ -137,24 +132,15 @@ public class Guard extends Character {
 				reverse = true;
 				
 				if(array!= arrayinverso)
-				{
-				array=arrayinverso;
-				indice_convert();
-				}
-			}
+				{array=arrayinverso;
+				indice_convert();}}
 			else {
 				if(array!= arraynormal)
-				{
-				array=arraynormal;
-				indice_convert();
-				}
-				reverse = false;
-				
-			}
-
+				{array=arraynormal;
+				indice_convert();}
+				reverse = false;}
 			rookieMovement();
 		}
-
 	}
 
 	/**

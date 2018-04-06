@@ -242,8 +242,8 @@ public class Level {
 
 		if (ogres != null) {
 
-			for (int i = 0; i < coord.length-1; i++) {
-				Ogre ogre = new Ogre(coord[i], coord[i+1]);
+			for (int i = 0; i < coord.length - 1; i++) {
+				Ogre ogre = new Ogre(coord[i], coord[i + 1]);
 				ogres.add(ogre);
 				i++;
 			}
@@ -296,41 +296,31 @@ public class Level {
 	 */
 	public boolean checkObstacle(int x, int y, int direction) {
 		if (direction == 2) {
-			if (board[x - 1][y] == 'X' || board[x - 1][y] == 'I' || board[x - 1][y] == 'S') {
-				return true;
-			} else {
-				return false;
-			}
+			if (board[x - 1][y] == 'X' || board[x - 1][y] == 'I' || board[x - 1][y] == 'S')return true;
+			else return false;
 		}
 		if (direction == 3) {
-			if (board[x + 1][y] == 'X' || board[x + 1][y] == 'I' || board[x + 1][y] == 'S') {
-				return true;
-			} else {
-				return false;
-			}
+			if (board[x + 1][y] == 'X' || board[x + 1][y] == 'I' || board[x + 1][y] == 'S') return true;
+			else return false;
 		}
 		if (direction == 1) {
-			if (board[x][y - 1] == 'X' || board[x][y - 1] == 'I' || board[x][y - 1] == 'S') {
-				return true;
-			} else {
-				return false;
-			}
+			if (board[x][y - 1] == 'X' || board[x][y - 1] == 'I' || board[x][y - 1] == 'S')return true;
+			else	return false;
 		}
 		if (direction == 4) {
-			if (board[x][y + 1] == 'X' || board[x][y + 1] == 'I' || board[x][y + 1] == 'S') {
-				return true;
-			} else {
-				return false;
-			}
+			if (board[x][y + 1] == 'X' || board[x][y + 1] == 'I' || board[x][y + 1] == 'S')	return true;
+			else return false;
 		}
-
-		return false;
+return false;
 	}
 
 	/**
 	 * Checks if the ogre in the coordinates passed can move
-	 * @param x coordinate
-	 * @param y coordinate 
+	 * 
+	 * @param x
+	 *            coordinate
+	 * @param y
+	 *            coordinate
 	 * @return true if can move else otherwise
 	 */
 	public boolean ogreMovement(int x, int y) {
@@ -410,9 +400,12 @@ public class Level {
 	}
 
 	/**
-	 * This function verifies if the door is closed 
-	 * @param x coordinate
-	 * @param y coordinate
+	 * This function verifies if the door is closed
+	 * 
+	 * @param x
+	 *            coordinate
+	 * @param y
+	 *            coordinate
 	 * @return true if the door closed is found and false otherwise
 	 */
 	public boolean foundClosedDoor(int x, int y) {
