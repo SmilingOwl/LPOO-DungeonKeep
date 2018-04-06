@@ -295,24 +295,13 @@ public class Level {
 	 * @return true if collision and false otherwise
 	 */
 	public boolean checkObstacle(int x, int y, int direction) {
-		if (direction == 2) {
-			if (board[x - 1][y] == 'X' || board[x - 1][y] == 'I' || board[x - 1][y] == 'S')return true;
-			else return false;
-		}
-		if (direction == 3) {
-			if (board[x + 1][y] == 'X' || board[x + 1][y] == 'I' || board[x + 1][y] == 'S') return true;
-			else return false;
-		}
-		if (direction == 1) {
-			if (board[x][y - 1] == 'X' || board[x][y - 1] == 'I' || board[x][y - 1] == 'S')return true;
-			else	return false;
-		}
-		if (direction == 4) {
-			if (board[x][y + 1] == 'X' || board[x][y + 1] == 'I' || board[x][y + 1] == 'S')	return true;
-			else return false;
-		}
-return false;
-	}
+		if ((direction == 2) &&(board[x - 1][y] == 'X' || board[x - 1][y] == 'I' || board[x - 1][y] == 'S')) return true;
+		
+		else if ((direction == 3)&&(board[x + 1][y] == 'X' || board[x + 1][y] == 'I' || board[x + 1][y] == 'S')) return true;
+		else if((direction == 1) && (board[x][y - 1] == 'X' || board[x][y - 1] == 'I' || board[x][y - 1] == 'S'))return true;
+		else if ((direction == 4)&&(board[x][y + 1] == 'X' || board[x][y + 1] == 'I' || board[x][y + 1] == 'S'))	return true;
+		else 
+			return false; }
 
 	/**
 	 * Checks if the ogre in the coordinates passed can move
