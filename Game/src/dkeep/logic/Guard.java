@@ -63,8 +63,7 @@ public class Guard extends Character {
 		else {
 			if (personality == "Drunken")
 				this.drunkenMovement();
-			else
-				this.suspiciousMovement();
+			else this.suspiciousMovement();
 		}
 
 	}
@@ -86,25 +85,16 @@ public class Guard extends Character {
 			break;
 		case 'd':
 			x++;
-			break;
-
-
-		}
+			break;}
 		indice++;
-		if(indice == 24)
-		{
-			indice=0;
-		}
-
-	}
+		if(indice == 24) indice=0;}
 
 	/**
 	 * Function that converts indices
 	 */
 	public void indice_convert()
 	{
-		if(indice == 0)
-			return;
+		if(indice == 0)return;
 					
 		indice = 24 - indice;
 
@@ -155,24 +145,17 @@ public class Guard extends Character {
 		{
 			reverse = true;
 			if(array!= arrayinverso)
-			{
-			array=arrayinverso;
-			indice_convert();
-			}
+			{array=arrayinverso;
+			indice_convert();}
 		}
 		else {
 			reverse = false;
 			if(array!= arraynormal)
-			{
-			array=arraynormal;
-			indice_convert();
-			}
-			
-		}
+			{array=arraynormal;
+			indice_convert();}}
+		
 
-		rookieMovement();
-
-	}
+		rookieMovement();}
 
 	/**
 	 * checks if there is collision between the guard and the given coordinates. 
@@ -185,19 +168,10 @@ public class Guard extends Character {
 		if (this.getLetter() == 'G') 
 		{
 			if (y == this.getYcoordinate() ) 
-			{
-				if (x == this.getXcoordinate() - 1 || x == this.getXcoordinate() + 1 || x == this.getXcoordinate())
-					return true;
+			{if (x == this.getXcoordinate() - 1 || x == this.getXcoordinate() + 1 || x == this.getXcoordinate())return true;
 			}
 			
 			if (x == this.getXcoordinate()) 
-			{
-				if (y == this.getYcoordinate() - 1 || y == this.getYcoordinate() + 1 || y == this.getYcoordinate())
-					return true;
-			}
-		}
-
-		return false;
-	}
-		
-	}
+			{if (y == this.getYcoordinate() - 1 || y == this.getYcoordinate() + 1 || y == this.getYcoordinate())return true;}
+		} return false;
+	}}
