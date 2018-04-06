@@ -86,7 +86,7 @@ public class GameGui {
 		layeredPane.add(panelMenu);
 		
 		panelMenu.setLayout(null); 
-				
+				 
 		
 		
 		panelEdit = new PanelEdit(pic, panelC);

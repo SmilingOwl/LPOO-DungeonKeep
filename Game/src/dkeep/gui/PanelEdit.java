@@ -23,67 +23,145 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.Font;
 
-public class PanelEdit extends JPanel{
+public class PanelEdit extends JPanel {
 	private Pictures pics;
-	JSpinner spinner , spinner_1;
-	JPanel panelBoard ;
+	JSpinner spinner, spinner_1;
+	JPanel panelBoard;
 	private int numOgres;
 	private int xHero;
 	private int yHero;
 	private int[] coorO;
 	private char[][] newBoard;
-	JComboBox<String> comboBox ;
-	private JPanel dd= new JPanel();
+	JComboBox<String> comboBox;
+	private JPanel dd = new JPanel();
 	private JTextField xPos;
 	private JTextField yPos;
 	private PanelControler panelC;
-	private JDialog settings;
-	public PanelEdit(Pictures pics, PanelControler panelC)
-	{
-		this.pics=pics;
-		dd.setBounds(500,500,0,0);
-		this.panelC=panelC;
-		add(dd);
-		newBoard = new char[][]{{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+
+	private char[][] newBoard55 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', 'X', 'X', 'X', 'X', 'X', 'X' } };;
+
+	private char[][] newBoard56 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 's', 's', 's', 's', 's', 's', 's', 's' } };
+	private char[][] newBoard57 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 's', 's', 's', 's', 's', 's', 's', 's', 's' }, { 's', 's', 's', 's', 's', 's', 's', 's', 's' } };
+	private char[][] newBoard58 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' }, { 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+			{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' } };
+	private char[][] newBoard65 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 's' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', 'X', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's' },
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 's' } };
+	private char[][] newBoard66 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
+	private char[][] newBoard67 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, { 's', 's', 's', 's', 's', 's', 's', 's', 's' } };
+	private char[][] newBoard68 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, { 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' },
+			{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' } };
+	private char[][] newBoard75 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 's', 's' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' }, { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 's', 's' } };
+	private char[][] newBoard76 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 's' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' }, { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 's' } };
+	private char[][] newBoard77 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
+	private char[][] newBoard78 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 's', 's', 's', 's', 's', 's', 's', 's', 's', 's' } };
+	private char[][] newBoard85 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 's', 's', 's' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's', 's' },
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 's', 's', 's' } };
+	private char[][] newBoard86 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 's', 's' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's', 's' },
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 's', 's' } };
+	private char[][] newBoard87 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 's' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X', 's' },
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 's' } };
+	private char[][] newBoard88 = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' } };
 
+	public PanelEdit(Pictures pics, PanelControler panelC) {
+		this.pics = pics;
+		dd.setBounds(500, 500, 0, 0);
+		this.panelC = panelC;
+		add(dd);
+		newBoard = new char[][] { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+				{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+				{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+				{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+				{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+				{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+				{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+				{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+				{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+				{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' } };
 
-
-			setVisible(false);
-			setLayout(null);
-			setEnabled(false);
-
-			requestFocusInWindow();
-
-			setFocusable(true);
-			setLayout(null);
-
-			inicializeButtons();
+		setVisible(false);
+		setLayout(null);
+		setEnabled(false);
+		requestFocusInWindow();
+		setFocusable(true);
+		setLayout(null);
+		inicializeButtons();
 	}
+
 	private void inicializeButtons() {
 		init();
 		buttonReturn();
 		buttonAdd();
-		//buttonSetting();
 		buttonExit();
-
-
 
 	}
 
-	private void init()
-	{
+	private void init() {
 
-		//number of ogres
-		JLabel Position=new JLabel("Position: (x,y)");
+		JLabel Position = new JLabel("Position: (x,y)");
 		Position.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Position.setBounds(15, 53, 143, 37);
 
@@ -101,14 +179,12 @@ public class PanelEdit extends JPanel{
 
 		add(yPos);
 
-
-		//o que acrescentar
-		JLabel lbGuard=new JLabel("add");
+		JLabel lbGuard = new JLabel("add");
 		lbGuard.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lbGuard.setBounds(15, 115, 110, 20);
 
 		add(lbGuard);
-		JLabel dimensions=new JLabel("Dimensions: ");
+		JLabel dimensions = new JLabel("Dimensions: ");
 
 		comboBox = new JComboBox();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -121,297 +197,79 @@ public class PanelEdit extends JPanel{
 		comboBox.addItem("white space");
 		comboBox.addItem("wall");
 
-
 	}
-	private void setDimentionsBoard( int y, int x)
-	{
-		pics.getGame().modify=true;
 
-		if (y==5)
-		{
-			if(x==5)
-			{
-				newBoard = new char[][]{{'X','X','X','X','X','X','X'},
-					{'I',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ','X'},
-					{'X','X','X','X','X','X','X'}};
-			}else if( x==6)
-			{
-				newBoard = new char[][]{
-					{'X','X','X','X','X','X','X','X'},
-					{'I',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ','X'},
-					{'X','X','X','X','X','X','X','X'},
-					{'s','s','s','s','s','s','s','s'}};
-			} else if (x==7)
-			{
-				newBoard = new char[][]{
-					{'X','X','X','X','X','X','X','X','X'},
-					{'I',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X','X','X','X','X','X','X','X','X'},
-					{'s','s','s','s','s','s','s','s','s'},
-					{'s','s','s','s','s','s','s','s','s'}};
-			} else if (x==8)
-			{
-				newBoard = new char[][]{
-					{'X','X','X','X','X','X','X','X','X','X'},
-					{'I',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X','X','X','X','X','X','X','X','X','X'},
-					{'s','s','s','s','s','s','s','s','s','s'},
-					{'s','s','s','s','s','s','s','s','s','s'},
-					{'s','s','s','s','s','s','s','s','s','s'}};
-			}
-		}else if (y==6)
-		{
-			if(x==5)
-			{
-				newBoard = new char[][]{ 
-					{'X','X','X','X','X','X','X','s'},
-					{'I',' ',' ',' ',' ',' ','X','s'},
-					{'X',' ',' ',' ',' ',' ','X','s'},
-					{'X',' ',' ',' ',' ',' ','X','s'},
-					{'X',' ',' ',' ',' ',' ','X','s'},
-					{'X',' ',' ',' ',' ',' ','X','s'},
-					{'X',' ',' ',' ',' ',' ','X','s'},
-					{'X','X','X','X','X','X','X','s'}};
-			}else if( x==6)
-			{
-				newBoard = new char[][]{
-					{'X','X','X','X','X','X','X','X'},
-					{'I',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ','X'},
-					{'X','X','X','X','X','X','X','X'},
-				};
-			} else if (x==7)
-			{
-				newBoard = new char[][]{
-					{'X','X','X','X','X','X','X','X','X'},
-					{'I',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X','X','X','X','X','X','X','X','X'},
-					{'s','s','s','s','s','s','s','s','s'}};
-			} else if (x==8)
-			{
-				newBoard = new char[][]{
-					{'X','X','X','X','X','X','X','X','X','X'},
-					{'I',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X','X','X','X','X','X','X','X','X','X'},
-					{'s','s','s','s','s','s','s','s','s','s'},
-					{'s','s','s','s','s','s','s','s','s','s'}};
-			}
-		} else if (y==7)
-		{
-			if(x==5)
-			{
-				newBoard = new char[][]{
-					{'X','X','X','X','X','X','X','s','s'},
-					{'I',' ',' ',' ',' ',' ','X','s','s'},
-					{'X',' ',' ',' ',' ',' ','X','s','s'},
-					{'X',' ',' ',' ',' ',' ','X','s','s'},
-					{'X',' ',' ',' ',' ',' ','X','s','s'},
-					{'X',' ',' ',' ',' ',' ','X','s','s'},
-					{'X',' ',' ',' ',' ',' ','X','s','s'},
-					{'X',' ',' ',' ',' ',' ','X','s','s'},
-					{'X','X','X','X','X','X','X','s','s'}};
-			}else if( x==6)
-			{
-				newBoard = new char[][]{
-					{'X','X','X','X','X','X','X','X','s'},
-					{'I',' ',' ',' ',' ',' ',' ','X','s'},
-					{'X',' ',' ',' ',' ',' ',' ','X','s'},
-					{'X',' ',' ',' ',' ',' ',' ','X','s'},
-					{'X',' ',' ',' ',' ',' ',' ','X','s'},
-					{'X',' ',' ',' ',' ',' ',' ','X','s'},
-					{'X',' ',' ',' ',' ',' ',' ','X','s'},
-					{'X',' ',' ',' ',' ',' ',' ','X','s'},
-					{'X','X','X','X','X','X','X','X','s'}};
-			} else if (x==7)
-			{
-				newBoard = new char[][]{
-					{'X','X','X','X','X','X','X','X','X'},
-					{'I',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X','X','X','X','X','X','X','X','X'},};
-			} else if (x==8)
-			{
-				newBoard = new char[][]{
-					{'X','X','X','X','X','X','X','X','X','X'},
-					{'I',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-					{'X','X','X','X','X','X','X','X','X','X'},
-					{'s','s','s','s','s','s','s','s','s','s'}};
-			}
-		}else if (y==8)
-		{
-			if(x==5)
-			{
-				newBoard = new char[][]{{ 'X', 'X', 'X', 'X', 'X', 'X','X','s','s','s' },
-					{ 'I', ' ', ' ', ' ', ' ', ' ','X','s','s' ,'s'}, 
-					{ 'X', ' ', ' ', ' ', ' ', ' ','X','s' ,'s','s'},
-					{ 'X', ' ', ' ', ' ', ' ', ' ','X','s','s','s'},
-					{ 'X', ' ', ' ', ' ', ' ', ' ','X','s','s','s'},
-					{ 'X', ' ', ' ', ' ', ' ', ' ','X','s' ,'s','s'},
-					{ 'X', ' ', ' ', ' ', ' ', ' ','X','s' ,'s','s'},
-					{ 'X', ' ', ' ', ' ', ' ', ' ','X','s' ,'s','s'}, 
-					{ 'X', ' ', ' ', ' ', ' ', ' ','X','s','s','s'},
-					{ 'X', 'X', 'X', 'X', 'X', 'X','X','s' ,'s','s'} };
-			}else if( x==6)
-			{
-				newBoard = new char[][]{{ 'X', 'X', 'X', 'X', 'X', 'X', 'X','X','s','s' },
-					{ 'I', ' ', ' ', ' ', ' ', ' ', ' ','X','s','s' }, 
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ','X','s' ,'s'},
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ','X','s','s'},
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ','X','s','s'},
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ','X','s' ,'s'},
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ','X','s' ,'s'},
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ','X','s' ,'s'}, 
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ','X','s','s'},
-					{ 'X', 'X', 'X', 'X', 'X', 'X', 'X','X','s' ,'s'} };
-			} else if (x==7)
-			{
-				newBoard = new char[][]{{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X','s' },
-					{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  'X','s' }, 
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  'X','s' },
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  'X' ,'s'},
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  'X' ,'s'},
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  'X','s' },
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  'X','s' },
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  'X','s' }, 
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  'X' ,'s'},
-					{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X',  'X','s' } };
-			} else if (x==8)
-			{
-				newBoard = new char[][]{{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-					{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
-					{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-					{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' } };
-
-			}
-		}		
-		pics.getGame().setMap2(newBoard);
-
-
-
-	}
-	private void setBoard2Characters()
-	{
-		xHero=0;
-		yHero=0;
-		coorO=new int[2*numOgres];
-		int numO=0;
-		for(int i=0; i < newBoard.length;i++)
-		{
-			for(int j=0; j < newBoard[i].length; j++)
-			{
-				if(newBoard[i][j]=='A')
-				{
-					xHero=i;
-					yHero=j;
-				}else if(newBoard[i][j]=='O')
-				{
-					if(numO <= 2*numOgres) 
-					{
-						coorO[numO]=i;
-						numO++;
-						coorO[numO]=j;
-						numO++;
-					}
-
-				}
-			}
+	private void setDimentionsBoard(int y, int x) {
+		pics.getGame().modify = true;
+		if (y == 5) {
+			if (x == 5) newBoard = newBoard55;
+			else if (x == 6) newBoard = newBoard56;
+			else if (x == 7) newBoard = newBoard57;
+			else if (x == 8) newBoard = newBoard58;
+		} else if (y == 6) {
+			if (x == 5) newBoard = newBoard65;
+			else if (x == 6) newBoard = newBoard66;
+			else if (x == 7) newBoard = newBoard67;
+			else if (x == 8) newBoard = newBoard68;
+		} else if (y == 7) {
+			if (x == 5) newBoard = newBoard75;
+			else if (x == 6) newBoard = newBoard76;
+			else if (x == 7) newBoard = newBoard77;
+			else if (x == 8) newBoard = newBoard78;
+		} else if (y == 8) {
+			if (x == 5) newBoard = newBoard85;
+			else if (x == 6) newBoard = newBoard86;
+			else if (x == 7) newBoard = newBoard87;
+			else if (x == 8) newBoard = newBoard88;
 		}
-		pics.getGame().setCoorO(coorO);
-		pics.getGame().setXHero(xHero);
-		pics.getGame().setYHero(yHero);
-
+		pics.getGame().setMap3(newBoard);
 	}
-	private void buttonAdd()
-	{
+
+	private void setBoard2Characters() {
+		xHero = 0;
+		yHero = 0;
+		coorO = new int[2 * numOgres];
+		int numO = 0;
+		for (int i = 0; i < newBoard.length; i++) {
+			for (int j = 0; j < newBoard[i].length; j++) {
+				if (newBoard[i][j] == 'A') {
+					xHero = i;
+					yHero = j;
+				} else if (newBoard[i][j] == 'O') {
+					if (numO <= 2 * numOgres) {
+						coorO[numO] = i;
+						numO++;
+						coorO[numO] = j;
+						numO++;}}}}
+		pics.getGame().setCoorOO(coorO);
+		pics.getGame().setXHeroo(xHero);
+		pics.getGame().setYHeroo(yHero);
+	}
+
+	private void buttonAdd() {
 		JButton buttonAdd = new JButton("add");
 		buttonAdd.setFont(new Font("Tahoma", Font.BOLD, 20));
-		buttonAdd.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent action)
-			{   
+		buttonAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent action) {
 
-				numOgres=pics.getOgreNum();
-				int x,y;
-				y=Integer.parseInt(xPos.getText());
-				x=Integer.parseInt(yPos.getText());
-				if( x > newBoard.length-2 || y> newBoard[1].length -2)
-				{
-					JOptionPane.showMessageDialog(dd, "Incorrect!");
-				}
-				//acrescenta as personagens 
-				if( comboBox.getSelectedItem().toString()== "key")
-				{  
-					if(numKeyInBoard() ==0)
-						newBoard[x][y]='k';
+				numOgres = pics.getOgreNum();
+				int x, y;
+				y = Integer.parseInt(xPos.getText());
+				x = Integer.parseInt(yPos.getText());
+				if (x > newBoard.length - 2 || y > newBoard[1].length - 2)  JOptionPane.showMessageDialog(dd, "Incorrect!");
 
+				if (comboBox.getSelectedItem().toString() == "key") {
+					if (numKeyInBoard() == 0) newBoard[x][y] = 'k';
 
-				}else if(comboBox.getSelectedItem().toString()== "Ogre")
-				{ 
-					if(numOgreInBoard()<numOgres)
-					{
-						newBoard[x][y]='O';
-					}
+				} else if (comboBox.getSelectedItem().toString() == "Ogre") {
+					if (numOgreInBoard() < numOgres) newBoard[x][y] = 'O';
 
-				}else if(comboBox.getSelectedItem().toString()== "Hero")
-				{
-					if(numHeroInBoard() ==0)
-						newBoard[x][y]='A';
-				}else if(comboBox.getSelectedItem().toString()== "wall")
-				{
-
-					newBoard[x][y]='X';
-				}else if(comboBox.getSelectedItem().toString()== "white space")
-				{
-
-					newBoard[x][y]=' ';
-				}
+				} else if (comboBox.getSelectedItem().toString() == "Hero") {
+					if (numHeroInBoard() == 0)newBoard[x][y] = 'A';
+					
+				} else if (comboBox.getSelectedItem().toString() == "wall") {
+					newBoard[x][y] = 'X';
+				} else if (comboBox.getSelectedItem().toString() == "white space") newBoard[x][y] = ' ';
 				repaint();
 			}
 		});
@@ -419,12 +277,11 @@ public class PanelEdit extends JPanel{
 		buttonAdd.setBounds(362, 98, 100, 38);
 		add(buttonAdd);
 	}
+
 	private void buttonExit() {
 		JButton buttonExit = new JButton("Exit");
-		buttonExit.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent action)
-			{
+		buttonExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent action) {
 				System.exit(0);
 			}
 		});
@@ -453,65 +310,58 @@ public class PanelEdit extends JPanel{
 
 		panelBoard = new JPanel();
 		panelBoard.setBounds(51, 108, 296, 250);
-		
+
 	}
+
 	ChangeListener listener = new ChangeListener() {
 		@Override
 		public void stateChanged(ChangeEvent e) {
-			
-			setDimentionsBoard((Integer) spinner.getValue() ,(Integer)spinner_1.getValue());
+
+			setDimentionsBoard((Integer) spinner.getValue(), (Integer) spinner_1.getValue());
 
 			repaint();
 		}
 	};
-	private int numOgreInBoard()
-	{
-		int O=0;
 
-		for(int i=0; i < newBoard.length;i++)
-		{
-			for(int j=0; j < newBoard.length;j++)
-			{
-				if(newBoard[i][j]== 'O') 
-				{
+	private int numOgreInBoard() {
+		int O = 0;
+
+		for (int i = 0; i < newBoard.length; i++) {
+			for (int j = 0; j < newBoard.length; j++) {
+				if (newBoard[i][j] == 'O') {
 					O++;
 				}
 			}
 		}
 		return O;
 	}
-	private int numHeroInBoard()
-	{
-		int O=0;
 
-		for(int i=0; i < newBoard.length;i++)
-		{
-			for(int j=0; j < newBoard.length;j++)
-			{
-				if(newBoard[i][j]== 'A') 
-				{
+	private int numHeroInBoard() {
+		int O = 0;
+
+		for (int i = 0; i < newBoard.length; i++) {
+			for (int j = 0; j < newBoard.length; j++) {
+				if (newBoard[i][j] == 'A') {
 					O++;
 				}
 			}
 		}
 		return O;
 	}
-	private int numKeyInBoard()
-	{
-		int O=0;
 
-		for(int i=0; i < newBoard.length;i++)
-		{
-			for(int j=0; j < newBoard.length;j++)
-			{
-				if(newBoard[i][j]== 'k') 
-				{
+	private int numKeyInBoard() {
+		int O = 0;
+
+		for (int i = 0; i < newBoard.length; i++) {
+			for (int j = 0; j < newBoard.length; j++) {
+				if (newBoard[i][j] == 'k') {
 					O++;
 				}
 			}
 		}
 		return O;
 	}
+
 	private void buttonReturn() {
 		JButton buttonReturn = new JButton("Return");
 		buttonReturn.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -519,24 +369,13 @@ public class PanelEdit extends JPanel{
 		buttonReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent a) {
 				setBoard2Characters();
-				if(numKeyInBoard()==0) 
-				{
-					JOptionPane.showMessageDialog(dd, "Please put the key!");
+				if (numKeyInBoard() == 0) JOptionPane.showMessageDialog(dd, "Please put the key!");
 
+				else if (numOgreInBoard() != numOgres) JOptionPane.showMessageDialog(dd, "Please put more Ogres!");
 
-				}else if(numOgreInBoard() != numOgres)
-				{
-					JOptionPane.showMessageDialog(dd, "Please put more Ogres!");
+				else if (numHeroInBoard() == 0) JOptionPane.showMessageDialog(dd, "Please put the Hero!");
 
-				}else if(numHeroInBoard() ==0)
-				{
-					JOptionPane.showMessageDialog(dd, "Please put the Hero!");
-
-				}else 
-				{
-					panelC.choosePanel(Event.endsetting);
-
-				}
+				else panelC.choosePanel(Event.endsetting);
 			}
 		});
 
@@ -544,52 +383,36 @@ public class PanelEdit extends JPanel{
 		add(buttonReturn);
 
 	}
+
 	@Override
-	public void paintComponent(Graphics g)
-	{
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		try {			
-			pics.loadImages(); 
+		try {
+			pics.loadImages();
 		} catch (IOException e) {
-		
+
 			e.printStackTrace();
 		}
-		if(panelC.getState()== panelC.getState().editPanel ) {
+		if (panelC.getState() == panelC.getState().editPanel) {
 
-			for(int i=0; i < newBoard.length;i++)
-			{
-				for(int j=0; j < newBoard.length;j++)
-				{
-					if(newBoard[i][j]== 'X') 
-					{
-						g.drawImage(pics.getWall(),10+ j *60,150 +i*60,60,60,this);
-					}else if(newBoard[i][j]== ' '){
-						g.drawImage(pics.getGround(), 10+j*60,150+ i*60, 60 , 60 ,this);
-					}  else if(newBoard[i][j]== 'I')
-					{
-						g.drawImage(pics.getGround(), 10+ j*60,150+ i*60, 60 , 60 ,this);
-						g.drawImage(pics.getCloseDoor(), 10+j *60,150+i*60,60,60,this);
+			for (int i = 0; i < newBoard.length; i++) {
+				for (int j = 0; j < newBoard.length; j++) {
+					if (newBoard[i][j] == 'X') {
+						g.drawImage(pics.getWall(), 10 + j * 60, 150 + i * 60, 60, 60, this);
+					} else if (newBoard[i][j] == ' ') {
+						g.drawImage(pics.getGround(), 10 + j * 60, 150 + i * 60, 60, 60, this);
+					} else if (newBoard[i][j] == 'I') {
+						g.drawImage(pics.getGround(), 10 + j * 60, 150 + i * 60, 60, 60, this);
+						g.drawImage(pics.getCloseDoor(), 10 + j * 60, 150 + i * 60, 60, 60, this);
 
-					}else if(newBoard[i][j] == 'k' )
-					{
-						g.drawImage(pics.getGround(), 10+j*60,150 +i*60, 60 , 60 ,this);
-						g.drawImage(pics.getKey(), 10+j *60,150+ i*60,60,60,this);
-					}else if(newBoard[i][j] == 'O' )
-					{
-						g.drawImage(pics.getGround(), 10+j*60,150 +i*60, 60 , 60 ,this);
-						g.drawImage(pics.getOgre(), 10+j *60,150+ i*60,60,60,this);
-					}else if(newBoard[i][j] == 'A' )
-					{
-						g.drawImage(pics.getGround(), 10+j*60,150 +i*60, 60 , 60 ,this);
-						g.drawImage(pics.getHeroArmed(), 10+j *60,150+ i*60,60,60,this);
-					}else {}
-				}
-			}
-
-		}
-
-	}
-
-
-}
+					} else if (newBoard[i][j] == 'k') {
+						g.drawImage(pics.getGround(), 10 + j * 60, 150 + i * 60, 60, 60, this);
+						g.drawImage(pics.getKey(), 10 + j * 60, 150 + i * 60, 60, 60, this);
+					} else if (newBoard[i][j] == 'O') {
+						g.drawImage(pics.getGround(), 10 + j * 60, 150 + i * 60, 60, 60, this);
+						g.drawImage(pics.getOgre(), 10 + j * 60, 150 + i * 60, 60, 60, this);
+					} else if (newBoard[i][j] == 'A') {
+						g.drawImage(pics.getGround(), 10 + j * 60, 150 + i * 60, 60, 60, this);
+						g.drawImage(pics.getHeroArmed(), 10 + j * 60, 150 + i * 60, 60, 60, this);
+					}}}}}}

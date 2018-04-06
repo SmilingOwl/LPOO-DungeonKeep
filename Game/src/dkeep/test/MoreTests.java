@@ -144,9 +144,9 @@ public class MoreTests {
 	public void getAndSetCoorO() {
 		Game g = new Game();
 		int[] coor = { 1, 2 };
-		g.setCoorO(coor);
+		g.setCoorOO(coor);
 
-		assertEquals(g.getCoorO(), coor);
+		assertEquals(g.getCoorOO(), coor);
 
 	}
 
@@ -154,17 +154,17 @@ public class MoreTests {
 	public void getAndSetHero() {
 		Game g = new Game();
 		Hero h = new Hero(1, 1, 'H');
-		g.setXHero(1);
-		g.setYHero(1);
-		assertEquals(g.getXHero(), h.getXcoordinate());
-		assertEquals(g.getYHero(), h.getYcoordinate());
+		g.setXHeroo(1);
+		g.setYHeroo(1);
+		assertEquals(g.getXHeroo(), h.getXcoordinate());
+		assertEquals(g.getYHeroo(), h.getYcoordinate());
 
 	}
 
 	@Test
 	public void setMap2Test() {
 		Game g = new Game();
-		g.setMap2(boarddd);
+		g.setMap3(boarddd);
 	}
 
 	@Test

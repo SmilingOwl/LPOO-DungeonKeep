@@ -16,10 +16,10 @@ public class Game {
 	public boolean modify;
 	public Level playingLevel;
 	protected String map = "";
-	protected char[][] map2;
-	private int xHero = 0;
-	private int yHero = 0;
-	private int[] coorO;
+	protected char[][] map3;
+	private int xHeroo = 0;
+	private int yHeroo = 0;
+	private int[] coorOO;
 	protected int numO = 0;
 
 	private boolean levelUp = false;
@@ -41,66 +41,66 @@ public class Game {
 
 	/**
 	 * 
-	 * return the coorO
+	 * return the coorOO
 	 */
-	public int[] getCoorO() {
-		return coorO;
+	public int[] getCoorOO() {
+		return coorOO;
 	}
 
 	/**
 	 * 
-	 * sets the coorO attribute
+	 * sets the coorOO attribute
 	 */
-	public void setCoorO(int[] cooro) {
-		coorO = cooro;
+	public void setCoorOO(int[] cooro) {
+		coorOO = cooro;
 	}
 
 	/**
 	 * 
 	 * return the hero x coordinate
 	 */
-	public int getXHero() {
-		return xHero;
+	public int getXHeroo() {
+		return xHeroo;
 	}
 
 	/**
 	 * 
 	 * return the hero y coordinate
 	 */
-	public int getYHero() {
-		return yHero;
+	public int getYHeroo() {
+		return yHeroo;
 	}
 
 	/**
 	 * 
 	 * sets the hero x coordinate
 	 */
-	public void setXHero(int x) {
-		xHero = x;
+	public void setXHeroo(int x) {
+		xHeroo = x;
 	}
 
 	/**
 	 * 
 	 * sets the hero y coordinate
 	 */
-	public void setYHero(int y) {
-		yHero = y;
+	public void setYHeroo(int y) {
+		yHeroo = y;
 	}
 
 	/**
 	 * 
-	 * return the map2 attribute
+	 * return the map3 attribute
 	 */
-	public char[][] getMap2() {
-		return map2;
+	public char[][] getMap3() {
+		return map3;
 	}
 
 	/**
 	 * 
-	 * sets the map2 attribute
+	 * sets the map3 attribute
 	 */
-	public void setMap2(char[][] map) {
-		this.map2 = map;
+	public void setMap3(char[][] map) {
+		this.map3 = map;
 	}
 
 	/**
@@ -175,44 +175,29 @@ public class Game {
 	 *            event
 	 */
 	public void updateStateGame(Event e) {
-		if (e == Event.Colision) {
-			gameState = State.Lost;
-		}
+		if (e == Event.Colision)gameState = State.Lost;
+		
 		if (e == Event.levelUp) {
 			levelUp = true;
 			if(playingLevel.getNumberLevel()==1)
-			{
-				gameState = State.Wonlevel1;
-				nextlevel();
-			}
-			else if(playingLevel.getNumberLevel()==2)
-				gameState = State.Won;
-
+			{   gameState = State.Wonlevel1;
+				nextlevel();}
+			else if(playingLevel.getNumberLevel()==2) gameState = State.Won;
 		}
-		if (e == Event.NewGame) {
-			gameState = State.Playing;
-		}
-		
-	}
+		if (e == Event.NewGame) gameState = State.Playing;}
 
 	/**
 	 * function that sets the next Level
 	 */
 	public void nextlevel() {
 		if (playingLevel.numberLevel == 1) {
-			playingLevel = new Level2(numO, xHero, yHero, coorO);
-			playingLevel.setXHero(xHero);
-			playingLevel.setYHero(yHero);
-			if (numO == 0) {
-				setRandomOgre();
-			} else
-				playingLevel.setNumberOgres(numO);
-			if (modify) {
-				this.playingLevel.setMap2(map2);
-			}
-		} 
-
-	}
+			playingLevel = new Level2(numO, xHeroo, yHeroo, coorOO);
+			playingLevel.setXHero(xHeroo);
+			playingLevel.setYHero(yHeroo);
+			if (numO == 0) setRandomOgre();
+			else playingLevel.setNumberOgres(numO);
+			if (modify)this.playingLevel.setMap2(map3);
+			}}
 
 	// set randomly guard and ogres!
 
@@ -269,38 +254,25 @@ public class Game {
 		// UP
 		if (letter == 'w') {
 
-			if (playingLevel.heroMovement(playingLevel.getHero().getXcoordinate() - 1,
-					playingLevel.getHero().getYcoordinate()))
-				playingLevel.getHero().setXcoordinate(playingLevel.getHero().getXcoordinate() - 1);
-		}
+			if (playingLevel.heroMovement(playingLevel.getHero().getXcoordinate() - 1,playingLevel.getHero().getYcoordinate())) playingLevel.getHero().setXcoordinate(playingLevel.getHero().getXcoordinate() - 1);}
 		// left
 		if (letter == 'a') {
 
-			if (playingLevel.heroMovement(playingLevel.getHero().getXcoordinate(),
-					playingLevel.getHero().getYcoordinate() - 1))
-				playingLevel.getHero().setYcoordinate(playingLevel.getHero().getYcoordinate() - 1);
-		}
+			if (playingLevel.heroMovement(playingLevel.getHero().getXcoordinate(),playingLevel.getHero().getYcoordinate() - 1)) playingLevel.getHero().setYcoordinate(playingLevel.getHero().getYcoordinate() - 1);}
 		// down
 		if (letter == 's') {
 
-			if (playingLevel.heroMovement(playingLevel.getHero().getXcoordinate() + 1,
-					playingLevel.getHero().getYcoordinate()))
-				playingLevel.getHero().setXcoordinate(playingLevel.getHero().getXcoordinate() + 1);
-		}
+			if (playingLevel.heroMovement(playingLevel.getHero().getXcoordinate() + 1,playingLevel.getHero().getYcoordinate()))playingLevel.getHero().setXcoordinate(playingLevel.getHero().getXcoordinate() + 1);}
 		// right
 		if (letter == 'd') {
 
-			if (playingLevel.heroMovement(playingLevel.getHero().getXcoordinate(),
-					playingLevel.getHero().getYcoordinate() + 1))
-				playingLevel.getHero().setYcoordinate(playingLevel.getHero().getYcoordinate() + 1);
-		}
+			if (playingLevel.heroMovement(playingLevel.getHero().getXcoordinate(), playingLevel.getHero().getYcoordinate() + 1))playingLevel.getHero().setYcoordinate(playingLevel.getHero().getYcoordinate() + 1);}
 		// update all character
 
 		updateGuardPosition();
 		updateOgrePosition();
 		updateKeyPosition();
-		updateDoorPosition();
-	}
+		updateDoorPosition();}
 
 	/**
 	 * function that manage ogre´s move
@@ -468,8 +440,7 @@ public class Game {
 			if (!playingLevel.getOgres().get(i).isStun())
 				OgreMove(playingLevel.getOgres().get(i));
 
-			else
-				playingLevel.getOgres().get(i).TimeStunCounter();
+			else playingLevel.getOgres().get(i).TimeStunCounter();
 
 			OgreDamageMove(playingLevel.getOgres().get(i));
 		}
@@ -489,36 +460,24 @@ public class Game {
 		// hero
 		if (playingLevel.getHero().getXcoordinate() == x && playingLevel.getHero().getYcoordinate() == y) {
 			System.out.print(playingLevel.getHero().getLetter() + " ");
-			return true;
-		}
+			return true;}
 		// Ogre and damage
 		if (playingLevel.getOgres() != null) {
 
 			for (int i = 0; i < playingLevel.getOgres().size(); i++) {
 
-				if (playingLevel.getOgres().get(i).getXcoordinate() == x
-						&& playingLevel.getOgres().get(i).getYcoordinate() == y) {
+				if (playingLevel.getOgres().get(i).getXcoordinate() == x && playingLevel.getOgres().get(i).getYcoordinate() == y) {
 
 					System.out.print(playingLevel.getOgres().get(i).getLetter() + " ");
-					return true;
-				}
+					return true;}
 
-				if (playingLevel.getOgres().get(i).getxDamage() == x
-						&& playingLevel.getOgres().get(i).getyDamage() == y) {
+				if (playingLevel.getOgres().get(i).getxDamage() == x && playingLevel.getOgres().get(i).getyDamage() == y) {
 
 					System.out.print(playingLevel.getOgres().get(i).getDamageSymbol() + " ");
-					return true;
-				}
-			}
-		}
+					return true;}}}
 		// guard
 		if (playingLevel.getGuard() != null) {
 
 			if (playingLevel.getGuard().getXcoordinate() == x && playingLevel.getGuard().getYcoordinate() == y) {
 				System.out.print(playingLevel.getGuard().getLetter() + " ");
-				return true;
-			}
-		}
-		return false;
-	}
-}
+				return true;}}return false;}}
